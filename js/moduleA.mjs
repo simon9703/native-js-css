@@ -1,0 +1,1 @@
+export {USER, A, B} from './moduleB.mjs'

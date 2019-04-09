@@ -1,0 +1,83 @@
+/*用于背景*/
+.bg-blue,
+.bg-primary {
+    background-color: #007bff;
+}
+
+.bg-green,
+.bg-success {
+    background-color: #28a745;
+}
+
+.bg-tea,
+.bg-info {
+    background-color: #17a2b8;
+}
+
+.bg-yellow,
+.bg-warning {
+    background-color: #ffc107;
+}
+
+.bg-red,
+.bg-danger {
+    background-color: #dc3545;
+}
+
+.bg-gray,
+.bg-secondary {
+    background-color: #6c757d;
+}
+
+.bg-dark {
+    background-color: #343a40;
+}
+
+.bg-light {
+    background-color: #f8f9fa;
+}
+
+
+
+/*用于字体*/
+.text-blue,
+.text-primary {
+    color: #007bff;
+}
+
+.text-green,
+.text-success {
+    color: #28a745;
+}
+
+.text-tea,
+.text-info {
+    color: #17a2b8;
+}
+
+.text-yellow,
+.text-warning {
+    color: #ffc107;
+}
+
+.text-red,
+.text-danger {
+    color: #dc3545;
+}
+
+.text-gray,
+.text-secondary {
+    color: #6c757d;
+}
+
+.text-dark {
+    color: #343a40;
+}
+
+.text-light {
+    color: #f8f9fa;
+}
+
+.text-white {
+    color: #fff;
+}

@@ -1,0 +1,108 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../color/color.css">
+    <title>button</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class='btn  bg-green text-white'> button</div>
+        <div class='btn  bg-blue text-white'>button</div>
+        <div class='btn  bg-red text-white'>button</div>
+        <div class='btn  bg-yellow text-white'>button</div>
+        <!--使用div时双击时，出现文字选中。在button双击时，出现outline外边框-->
+        <button class='btn  bg-dark text-white'>button</button>
+        <button class='btn  bg-tea text-white'>button</button>
+        <button class='btn-link'>link</button>
+
+</body>
+
+<style>
+    body {
+        margin: 24px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .container {
+        /*inline-block之间空隙，子元素重新设置字体大小。*/
+        /* font-size :0 ; */
+    }
+
+    input,
+    textarea,
+    select,
+    button,
+    div {
+        /*统一字体*/
+        font: 400 1rem "Microsoft YaHei"
+    }
+
+    /*填充色button*/
+    .btn {
+        display: inline-block;
+        padding: .375rem .75rem;
+        border-radius: .25rem;
+        cursor: pointer;
+
+        /*指定字体大小(可修改)*/
+        font-size: 1rem;
+        line-height: 1.5;
+
+        /*font-family: button-"Arial"和 div-"Microsoft YaHei" 字体不同，不同宽 */
+        /* font: 400 1rem "Arial"; */
+
+        /*取消button样式边框*/
+        border: none;
+        
+        /*文字不换行居中*/
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        /*与其他button垂直居中对其*/
+        vertical-align: middle;
+    }
+
+    .btn:hover {
+        color: #000;
+        background: #ccc;
+    }
+
+    .btn-link {
+        background-color: transparent;
+        color: #007bff;
+
+        /*复制btn样式，保持空间距离相同*/
+        display: inline-block;
+        padding: .375rem .75rem;
+        cursor: pointer;
+        line-height: 1.5;
+        font: 400 1rem "Arial";
+        border: none;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    .btn-link:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+    
+    .btn-link:focus {
+        /*取消button点击时，浅蓝色外边框*/
+        outline: 0;
+    }
+</style>
+
+</html>

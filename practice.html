@@ -3,18 +3,51 @@
 <header>
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </header>
+
 <body>
-    
+  <div id="aa">aaa</div>
+  <div id="bb">bbb</div>
+  <input onkeypress="change()"></input>
 </body>
 
 
 <script>
-var num = 5;
-var num_f = 5.333;
+  var a = 1;
+  function change() {
+    
+    console.log(a)
+  }
 
+  function test() {
+    var div = document.getElementById('aa');
+
+    console.log(div)
+    var timer;
+    var i = 0xA00000;
+    var old = new Date().getTime();
+    var current;
+    //  timer = setInterval(() => {
+    //    current = new Date().getTime();
+    //    console.log(current - old)
+    //    old = current;
+    //    div.style.backgroundColor = '#' + i.toString(16)
+    //    i++;
+    //    if(i > 0xFFFFFF) clearInterval(timer)
+    //  },0)
+
+    function f() {
+      current = new Date().getTime();
+      console.log(current - old)
+      old = current;
+      timer = setTimeout(f, 0);
+      div.style.backgroundColor = '#' + i.toString(16)
+      if (i++ > 0xFFFFFF) clearTimeout(timer)
+    }
+    setTimeout(f, 0)
+  }
 
 </script>
 <style>
-
 </style>
+
 </html>
