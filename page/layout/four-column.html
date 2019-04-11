@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <hr>
+    <!--仿Ping++四列文字-->
+    <div class="difficult">
+        <h3 class="difficult-title">企业接入支付难点</h3>
+        <div class="difficult-box">
+            <div class="difficult-box-item">
+                <h4>支付渠道设计</h4>
+                <p>如何选择碎片化的支付渠道来服务越来越丰富的交易场景；</p>
+                <p>如何获取行业最具竞争力的支付通道费率。</p>
+            </div>
+            <div class="difficult-box-item">
+                <h4>产品研发成本</h4>
+                <p>交易系统的开发涉及支付接口对接、订单系统、账务系统等「泛支付」模块，开发费时费力，并需要不断维护升级。</p>
+            </div>
+            <div class="difficult-box-item">
+                <h4>账务管理复杂</h4>
+                <p>多变的交易场景和线上线下全渠道使运营、财务人员面临复杂的账务管理。</p>
+            </div>
+            <div class="difficult-box-item">
+                <h4>支付业务设计</h4>
+                <p>支付行业渐趋专业化、规范化，企业需要具备更高的支付和交易系统设计以及业务规划能力。</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+</body>
+
+<style>
+    /*仿照地址：https://www.pingxx.com/*/
+    
+    hr {
+        margin: 0;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        /*取消H、p上margin，只保留下边margin。*/
+        margin-top: 0;
+        margin-bottom: .5rem;
+        line-height: 1.3;
+    }
+
+    /*difficult整体布局*/
+    .difficult {
+        background-color: #f5f7f8;
+        /*上下留白*/
+        padding: 40px 0;
+    }
+
+    /*居中标题栏*/
+    .difficult-title {
+        text-align: center;
+    }
+
+    /*四列*/
+    .difficult-box {
+        display: flex;
+        justify-content: center;
+
+        /*添加上下边距*/
+        padding: 24px 0;
+    }
+
+    /*不同列详情。*/
+    .difficult-box-item {
+        flex: 0 0 25%;
+        height: 160px;
+
+        padding: 0 64px;
+        overflow: hidden;
+        
+        /*右侧浅线*/
+        border-right: 1px solid rgba(0, 0, 0, .2);
+
+    }
+
+    .difficult-box-item h4{
+        line-height: 160px;
+        text-align: center;
+        transition: .4s;
+
+    }
+
+    .difficult-box-item p{
+        /*详细内容淡入淡出*/
+        opacity: 0;
+        transition: .4s;
+
+    }
+
+    .difficult-box-item:hover h4{
+        margin-top: 12px;
+        line-height: 24px;
+    }
+
+    .difficult-box-item:hover p{
+        opacity: 1;
+    }
+</style>
+
+</html>

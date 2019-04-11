@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        张思蒙
+    </div>
+</body>
+<style>
+    @keyframes animal {
+        0% {
+            height: 500px;
+            width: 300px;
+            background-color: blue;
+        }
+
+        30% {
+            height: 200px;
+            width: 1000px;
+            background-color: red;
+        }
+
+        100% {
+            height: 300px;
+            width: 500px;
+            background-color: yellow;
+        }
+    }
+
+    div {
+        animation: animal linear 2s 1s;
+        animation-fill-mode: backwards;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+</style>
+
+</html>
