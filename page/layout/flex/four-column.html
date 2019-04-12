@@ -10,7 +10,6 @@
 
 <body>
     <hr>
-    <!--仿Ping++四列文字-->
     <div class="difficult">
         <h3 class="difficult-title">企业接入支付难点</h3>
         <div class="difficult-box">
@@ -37,13 +36,14 @@
 </body>
 
 <style>
-    /*仿照地址：https://www.pingxx.com/*/
-    
+    /*仿Ping++四列文字://www.pingxx.com/*/
+
     hr {
         margin: 0;
     }
 
     * {
+        font-family: Monospaced Number, Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
         box-sizing: border-box;
     }
 
@@ -70,6 +70,8 @@
     /*居中标题栏*/
     .difficult-title {
         text-align: center;
+        font-weight: 300;
+        font-size: 1.75rem; /*28px细线标题*/
     }
 
     /*四列*/
@@ -77,7 +79,7 @@
         display: flex;
         justify-content: center;
 
-        /*添加上下边距*/
+        /*添加上下边距,，与上下元素分开。*/
         padding: 24px 0;
     }
 
@@ -88,32 +90,35 @@
 
         padding: 0 64px;
         overflow: hidden;
-        
+
         /*右侧浅线*/
         border-right: 1px solid rgba(0, 0, 0, .2);
 
     }
 
-    .difficult-box-item h4{
+    .difficult-box-item h4 {
         line-height: 160px;
         text-align: center;
         transition: .4s;
 
+        font-size: 18px;
+        font-weight: 600;
     }
 
-    .difficult-box-item p{
+    .difficult-box-item p {
         /*详细内容淡入淡出*/
         opacity: 0;
         transition: .4s;
 
+        font-size: 14px;
     }
 
-    .difficult-box-item:hover h4{
+    .difficult-box-item:hover h4 {
         margin-top: 12px;
         line-height: 24px;
     }
 
-    .difficult-box-item:hover p{
+    .difficult-box-item:hover p {
         opacity: 1;
     }
 </style>
