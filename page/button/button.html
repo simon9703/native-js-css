@@ -23,13 +23,13 @@
     </div>
     <div class="row">
         <span>link: </span>
-        <button class='btn btn-link'>link</button>
+        <div class='btn-link'>link</div>
     </div>
 
     <div class="row">
         <span>d|b-outline</span>
-        <div class='btn btn-outline-blue'> button</div>
-        <button class='btn btn-outline-blue'>button</button>
+        <div class='btn-outline-blue'> button</div>
+        <button class='btn-outline-blue'>button</button>
     </div>
 
     <div class="row">
@@ -39,18 +39,40 @@
         <div class='btn btn-hover-shadow bg-yellow text-white'> button</div>
     </div>
 
-    <div class="row btn-bar">
-            <!-- <span>btn-bar</span> -->
-            <div class='btn bg-red text-white'> button</div>
-            <div class='btn bg-blue text-white'> button</div>
-            <div class='btn bg-yellow text-white'> button</div>
+    <div>
+        <div class="row btn-bar">
+            <div style="float: left;">
+                <span>left1</span>
+                <div class='btn btn-hover  bg-red text-white'> button</div>
+                <div class='btn btn-hover bg-blue text-white'> button</div>
+            </div>
+            <div style="float: left;">
+                <span>left2</span>
+                <div class='btn btn-hover bg-yellow text-white'> button</div>
+            </div>
+            <div style="float: right;">
+                <span>right2</span>
+                <div class='btn btn-hover bg-dark text-white'>button</div>
+                <div class='btn btn-hover bg-tea text-white'>button</div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
-            <!-- <span>btn-bar</span> -->
-            <div class='btn bg-red text-white'> button</div>
-            <div class='btn bg-blue text-white'> button</div>
-            <div class='btn bg-yellow text-white'> button</div>
+        <!-- <span>btn-bar</span> -->
+        <div class='btn bg-red text-white'> button</div>
+        <div class='btn bg-blue text-white'> button</div>
+        <div class='btn bg-yellow text-white'> button</div>
+    </div>
+
+    <div style="letter-spacing: 0">
+        <span>aa</span>
+        <span>aa</span>
+        <span>bb</span>
+    </div>
+
+    <div class="aa" style="background:yellow">
+        aaaaa
     </div>
 </body>
 
@@ -59,10 +81,10 @@
         margin: 24px;
     }
 
-    span {
+    /* span {
         display: inline-block;
         min-width: 6rem;
-    }
+    } */
 
     .row {
         margin-top: 16px;
@@ -71,5 +93,9 @@
         /* font-size :0 ; */
     }
 
+    .aa::after {
+        content: 'ss';
+    }
 </style>
+
 </html>

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*基础button*/
-.btn {
+.btn, .btn-outline-blue, .btn-link {
   display: inline-block;
   padding: .375rem .75rem;
   border-radius: .25rem;
@@ -15,6 +15,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  /*关闭文本选中*/
+  user-select: none;
   /*与其他button垂直居中对其*/
   vertical-align: middle;
   /*颜色等过渡*/
@@ -53,12 +55,57 @@ button:focus {
 
 /*按钮组*/
 .btn-bar {
+  /*单独文件需要添加。*/
+  /*去除浏览器默认8px留白*/
+  /*通用样式*/
+  /*关闭文本选中*/
+  /*消除段落默认空隙。*/
+  /*轻细标题*/
+  /*BFC 与 清除浮动*/
+  /*bfc--> 防止margin-top子元素与父元素一起偏移。*/
   background-color: yellow; }
-  .btn-bar .btn {
-    float: left; }
-  .btn-bar .btn:last-of-type {
-    float: right; }
+  .btn-bar body {
+    margin: 0;
+    padding: 0; }
+  .btn-bar * {
+    /*统一字体。字体不同，不同组件的宽高右差异。*/
+    font-family: Monospaced Number, Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+    /*修改盒子*/
+    box-sizing: border-box;
+    /*单词换行*/
+    word-break: break-all;
+    /*其他可选*/
+    line-height: 1.5; }
+  .btn-bar a,
+  .btn-bar span {
+    user-select: none; }
+  .btn-bar h1,
+  .btn-bar h2,
+  .btn-bar h3,
+  .btn-bar h4,
+  .btn-bar h5,
+  .btn-bar h6,
+  .btn-bar p {
+    margin: 0;
+    padding: 0; }
+  .btn-bar h1,
+  .btn-bar h2,
+  .btn-bar h3,
+  .btn-bar h4,
+  .btn-bar h5,
+  .btn-bar h6 {
+    font-weight: 300;
+    /*默认下边距离 .2rem*/
+    margin-bottom: 1.2rem; }
+  .btn-bar p {
+    font-weight: 400;
+    margin-bottom: 1rem; }
+  .btn-bar::before {
+    content: "";
+    display: table; }
   .btn-bar::after {
     content: "";
     clear: both;
     display: table; }
+  .btn-bar .btn, .btn-bar .btn-outline-blue, .btn-bar .btn-link {
+    border-radius: 0; }

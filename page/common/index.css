@@ -10,6 +10,40 @@ body {
   font-family: Monospaced Number, Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
   /*修改盒子*/
   box-sizing: border-box;
-  /*其他可选*/ }
+  /*单词换行*/
+  word-break: break-all;
+  /*其他可选*/
+  line-height: 1.5; }
 
-/*清除浮动*/
+/*关闭文本选中*/
+a,
+span {
+  user-select: none; }
+
+/*消除段落默认空隙。*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0; }
+
+/*轻细标题*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+  /*默认下边距离 .2rem*/
+  margin-bottom: 1.2rem; }
+
+p {
+  font-weight: 400;
+  margin-bottom: 1rem; }
+
+/*BFC 与 清除浮动*/

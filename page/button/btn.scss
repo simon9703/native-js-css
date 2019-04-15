@@ -18,6 +18,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 
+    /*关闭文本选中*/
+    user-select: none;
+
     /*与其他button垂直居中对其*/
     vertical-align: middle;
 
@@ -33,6 +36,7 @@ button:focus {
 
 /*外边框样式button*/
 .btn-outline-blue {
+    @extend .btn;
     $blue: #007bff;
 
     border: solid 1px $blue;
@@ -50,6 +54,8 @@ button:focus {
 
 /*链接样式*/
 .btn-link {
+    @extend .btn;
+
     background-color: transparent;
     color: #007bff;
 
@@ -71,23 +77,28 @@ button:focus {
 }
 
 
-
-
 /*按钮组*/
-.btn-bar {
+.btn-bar{
+    /*单独文件需要添加。*/
+    @import '../common/index';
+
+    @include clearfix;
+
     background-color: yellow;
 
     & .btn {
-        float: left;
+        border-radius: 0;
+
     }
 
-    & .btn:last-of-type {
-        float: right;
-    }
+    // & :nth-child(1),
+    // & :nth-child(2) {
+    //     // float: left;
 
-    &::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
+    // }
+
+    // & :nth-child(3) {
+        // float: right;
+    // }
+
 }

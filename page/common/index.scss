@@ -12,17 +12,61 @@ body {
     /*修改盒子*/
     box-sizing: border-box;
 
+    /*单词换行*/
+    word-break: break-all;
+
     /*其他可选*/
-    // line-height: 1.3rem;
+    line-height: 1.5;
     // font-size: 1rem;
     // color: #242a40;
     // background-color: #f4f5f6;
 }
 
+/*关闭文本选中*/
+a,
+span {
+    user-select: none;
+}
 
+/*消除段落默认空隙。*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
 
-/*清除浮动*/
+/*轻细标题*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 300; // 默认400
+
+    /*默认下边距离 .2rem*/
+    margin-bottom: 1.2rem;
+}
+
+p {
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+/*BFC 与 清除浮动*/
 @mixin clearfix {
+
+    /*bfc--> 防止margin-top子元素与父元素一起偏移。*/
+    &::before {
+        content: "";
+        display: table;
+    }
+
     &::after {
         content: "";
         clear: both;
