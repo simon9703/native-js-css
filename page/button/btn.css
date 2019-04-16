@@ -61,6 +61,7 @@ button:focus {
   /*关闭文本选中*/
   /*消除段落默认空隙。*/
   /*轻细标题*/
+  /*图片大小始终填满父布局。（默认原图大小）*/
   /*BFC 与 清除浮动*/
   /*bfc--> 防止margin-top子元素与父元素一起偏移。*/
   background-color: yellow; }
@@ -100,6 +101,21 @@ button:focus {
   .btn-bar p {
     font-weight: 400;
     margin-bottom: 1rem; }
+  .btn-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    .btn-bar ul > li {
+      display: table-cell; }
+  .btn-bar img {
+    width: 100%;
+    height: 100%;
+    /*width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;*/
+    /*与文字中线对齐。*/
+    vertical-align: middle; }
   .btn-bar::before {
     content: "";
     display: table; }

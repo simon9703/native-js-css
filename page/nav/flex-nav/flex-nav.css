@@ -1,0 +1,94 @@
+@charset "UTF-8";
+.top-bar {
+  display: flex;
+  justify-content: center;
+  padding: .5rem 0;
+  color: white;
+  line-height: 1.5;
+  background-image: linear-gradient(to right, #333399, #3366FF); }
+  .top-bar-title {
+    flex: 0 0 83.3333%; }
+
+.nav-bar {
+  /*去除浏览器默认8px留白*/
+  /*通用样式*/
+  /*关闭文本选中*/
+  /*消除段落默认空隙。*/
+  /*轻细标题*/
+  /*图片大小始终填满父布局。（默认原图大小）*/
+  /*BFC 与 清除浮动*/
+  /*bfc--> 防止margin-top子元素与父元素一起偏移。*/ }
+  .nav-bar body {
+    margin: 0;
+    padding: 0; }
+  .nav-bar * {
+    /*统一字体。字体不同，不同组件的宽高右差异。*/
+    font-family: Monospaced Number, Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+    /*修改盒子*/
+    box-sizing: border-box;
+    /*单词换行*/
+    word-break: break-all;
+    /*其他可选*/
+    line-height: 1.5; }
+  .nav-bar a,
+  .nav-bar span {
+    user-select: none; }
+  .nav-bar h1,
+  .nav-bar h2,
+  .nav-bar h3,
+  .nav-bar h4,
+  .nav-bar h5,
+  .nav-bar h6,
+  .nav-bar p {
+    margin: 0;
+    padding: 0; }
+  .nav-bar h1,
+  .nav-bar h2,
+  .nav-bar h3,
+  .nav-bar h4,
+  .nav-bar h5,
+  .nav-bar h6 {
+    font-weight: 300;
+    /*默认下边距离 .2rem*/
+    margin-bottom: 1.2rem; }
+  .nav-bar p {
+    font-weight: 400;
+    margin-bottom: 1rem; }
+  .nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    .nav-bar ul > li {
+      display: table-cell; }
+  .nav-bar img {
+    width: 100%;
+    height: 100%;
+    /*width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;*/
+    /*与文字中线对齐。*/
+    vertical-align: middle; }
+  .nav-bar::before {
+    content: "";
+    display: table; }
+  .nav-bar::after {
+    content: "";
+    clear: both;
+    display: table; }
+  .nav-bar-brand {
+    float: left;
+    height: 35.2px;
+    width: 120px;
+    margin-right: .75rem;
+    background: url("./logo-white.svg") no-repeat center; }
+  .nav-bar-left {
+    float: left; }
+  .nav-bar-right {
+    float: right; }
+  .nav-bar li > a {
+    display: inline-block;
+    padding: .45rem .7rem;
+    font-size: .875rem;
+    color: white;
+    text-decoration: none; }

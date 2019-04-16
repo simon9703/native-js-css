@@ -9,39 +9,33 @@
 </head>
 
 <body>
-    <p>这是一个图片1</p>
-    <p>这是一个图片2</p>
-    <p>这是一个图片3</p>
-    <p>这是一个图片4</p>
-    <p>这是一个图片5</p>
-    <p>这是一个图片6</p>
-    <p>这是一个图片7</p>
-    <p>这是一个图片8</p>
-    <p>这是一个图片9</p>
-    <p>这是一个图片0</p>
+    <div>  </div>
+
 </body>
 <style>
-    p {
-        margin: 0;
-        line-height: 300px;
-    }
-    body {
-        z-index: 1;
-        background: linear-gradient(to top right, orange 50%, #e0e0e0 50%) no-repeat;
-        background-size: 100% calc(100% - 100vh + 5px); /*留出一部分背景空白，让进度条能读满。100vh为1个屏幕高度*/
-    }
+   div {
+       position: fixed;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       width: 250px;
+       height: 250px;
+       animation: zhuanquan 3s ease;
+       animation-direction: alternate;
+       animation-iteration-count: infinite;
+       animation-fill-mode: both;
+   }
 
-    body::after {
-        content: "aa";
-        background: #fff;
-        position: fixed;
-        /*块级元素，能被fixed + trbl拉伸至铺满屏幕。*/
-        top: 5px;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: -1;
-    }
+   @keyframes zhuanquan {
+       from {
+          background: red;
+       }
+
+       to {
+          background:blue;
+          transform: rotate(180deg) scale(2.5)
+       }
+   }
 </style>
 
 </html>

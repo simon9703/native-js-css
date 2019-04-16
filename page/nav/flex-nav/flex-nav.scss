@@ -1,0 +1,45 @@
+.top-bar {
+    display: flex;
+    justify-content: center;
+
+    padding: .5rem 0;
+    color: white;
+    line-height: 1.5;
+    background-image: linear-gradient(to right, #333399, #3366FF);
+
+    &-title {
+        flex: 0 0 83.3333%
+    }
+}
+
+.nav-bar {
+    @import '../../common/index';
+    @include clearfix;
+
+    &-brand {
+        float: left;
+        // 图片固定宽高
+        height: 35.2px;
+        width: 120px;
+        margin-right: .75rem;
+        background: url('./logo-white.svg') no-repeat center;
+    }
+
+    &-left {
+        float: left;
+    }
+
+    &-right { // 浮动到右侧
+        float: right;
+    }
+
+    & li>a {
+        display: inline-block; // 使用上下padding
+        padding: .45rem .7rem; // 间距加上行高/2+ 0.5/2*14
+
+        font-size: .875rem; // 14px
+        color: white;
+        text-decoration: none;
+       
+    }
+}

@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="../../../sass/index.css"> -->
+    <link rel="stylesheet" href="../../../sass/index.css">
 </head>
 
 <body>
     <div class="mid-66">
-        <h3>收款</h3>
+        <h4>收款</h4>
         <p>一个API，在任何平台场景接入支付功能。</p>
         <div class="flex-box">
             <div class="flex-box-item">
@@ -56,48 +56,44 @@
 
         </div>
     </div>
-    
-    <h1>aaaa</h1>
-    <h2>aaaa</h2>
-    <h3>aaaa</h3>
-    <h4>aaaa</h4>
-    <h5>aaaa</h5>
-    <h6>aaaa</h6>
-    <p>aaaa</p>
-    <span>aaaaa</span>
-    <strong>bbbb</strong>
-    <i>cccccc</i>
 </body>
 
 <style>
+    /*模仿四列https://www.pingxx.com/products?from=1&sub_from=75&desc=payment*/
     body {
         background-color: #fefefe;
     }
 
+    /*居中*/
     .mid-66 {
         width: 66.6666%;
         margin: 0 auto;
     }
 
-    .mid-66 > h3 {
+    /*大标题*/
+    .mid-66>h4 {
         font-size: 34px;
     }
 
-    .mid-66 > p {
+    /*段落文字*/
+    .mid-66>p {
         font-size: 16px;
         margin-bottom: 12px;
     }
 
+    /*flex布局*/
     .flex-box {
         display: flex;
         flex-flow: row wrap;
     }
 
+    /*占用1/4。右下空隙*/
     .flex-box-item {
         flex: 0 0 25%;
         padding: 0 12px 12px 0;
     }
 
+    /*图文框*/
     .image-box {
         padding: 16px;
         background-color: #f9f9f9;
@@ -109,17 +105,17 @@
         height: 100%;
         /*与文字中线对齐。*/
         vertical-align: middle;
-        
-        /*图片自生无间隙时。*/
+
+        /*图片占满时留些间隙。*/
         padding: 12px;
     }
-    .image-box p{
+
+    .image-box p {
         text-align: center;
         font-weight: 700;
         color: #909090;
         margin-bottom: 0;
     }
-
 </style>
 
 </html>
