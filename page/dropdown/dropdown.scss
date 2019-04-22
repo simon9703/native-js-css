@@ -1,0 +1,61 @@
+/*hover时显示下拉菜单*/
+
+
+.dropdown {
+    display: inline-block; // 和button大小相符
+    position: relative;  // 网格定位dropdown-content
+
+    &-btn { // 主按钮
+        $dark: #343a40;
+        padding: .375rem .75rem;
+        color: white;
+        background-color: $dark;
+        user-select: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: transparentize($color: $dark, $amount: .2)
+        }
+    }
+
+    &-content {  // 下拉选项
+        display: none;
+        position: absolute; // absolute中外层div宽度会被压缩，至inline值。
+
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+        background: #f9f9f9;
+
+        transition: 3s;
+        
+        /*同父布局同宽*/
+        // width:100%;  // 1
+        // left: 0; right: 0; // 2
+        // overflow: hidden; //隐藏超出部分
+        
+        a { // 内容列表样式
+            display: block; //垂直分布
+            width: 10rem;
+            padding: .5rem 1rem;
+
+            /*先触发父类:hover, 之后是子类的:hover生效*/
+            &:hover { 
+               background: #e0e0e0;
+            }
+        }  
+    }
+}
+
+
+.dropdown-hover {  // hover展示
+    @extend .dropdown;
+ 
+    &:hover .dropdown-content {
+        display: block;
+    }
+}
+
+.show {
+    display: block;
+}
+
+

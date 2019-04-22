@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../common/index.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <!--hover下拉菜单-->
+    <div class="dropdown-hover" style="margin:0 100px">
+        <div class="dropdown-btn">hover me</div>
+        <div class="dropdown-content">
+            <a href="#">link1</a>
+            <a href="#">link2</a>
+            <a href="#">link3</a>
+        </div>
+    </div>
+
+    <!--点击下拉菜单-->
+    <div class="dropdown" style="margin:0 100px">
+        <div onclick="toggleShow()" id="dropdown-click" class="dropdown-btn">click me</div>
+        <div id='dropdown-hide' class="dropdown-content">
+            <a href="#">link1</a>
+            <a href="#">link2</a>
+            <a href="#">link3</a>
+        </div>
+    </div>
+
+     <!--点击下拉菜单-->
+     <div class="dropdown" style="margin:0 100px">
+            <div onclick="toggleShow2()" id="dropdown-click" class="dropdown-btn">click me</div>
+            <div id='dropdown-hide2' class="dropdown-content">
+                <a href="#">link1</a>
+                <a href="#">link2</a>
+                <a href="#">link3</a>
+            </div>
+        </div>
+</body>
+
+<script>
+    // 关闭所有下拉菜单
+    function closeAllDrops() {
+        const drops = document.querySelectorAll('.dropdown-content')
+        drops.forEach(element => {
+                if(element.classList.contains('show')) {
+                    element.classList.remove('show')
+                }
+            })
+    }
+
+    function toggleShow() {
+        // 先关闭其他下拉选项
+        closeAllDrops()
+        document.querySelector("#dropdown-hide").classList.toggle("show");
+    }
+
+    function toggleShow2() {
+        closeAllDrops()
+
+        document.querySelector("#dropdown-hide2").classList.toggle("show");
+    }
+
+    // 全局点击事件，没有点击下拉菜单按钮时  --> 外边 或 a标签
+    window.onclick = event => {
+        // matches --> 元素是否能被css选择器选中。
+        console.log(event.target.matches('.dropdown-btn'))
+        if(!event.target.matches('.dropdown-btn')) {
+            closeAllDrops()
+        }
+    }
+
+
+// document.getElementById('dropdown-click').addEventListener('click', toggleShow)
+</script>
+
+<style>
+    body {
+        padding: 8px;
+    }
+</style>
+
+</html>

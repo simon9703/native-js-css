@@ -1,0 +1,14 @@
+.nav {
+    background-color: #343a40;
+    >a,
+    .dropdown>a { // 导航栏下a按钮
+        color: white;
+        padding: .375rem .75rem;
+        border: none;
+        display: inline-block;
+
+        &:hover {
+            background-color: #dc3545;
+        }
+    }
+}

@@ -1,0 +1,33 @@
+@charset "UTF-8";
+/*hover时显示下拉菜单*/
+.dropdown, .dropdown-hover {
+  display: inline-block;
+  position: relative; }
+  .dropdown-btn {
+    padding: .375rem .75rem;
+    color: white;
+    background-color: #343a40;
+    user-select: none;
+    cursor: pointer; }
+    .dropdown-btn:hover {
+      background-color: rgba(52, 58, 64, 0.8); }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background: #f9f9f9;
+    transition: 3s;
+    /*同父布局同宽*/ }
+    .dropdown-content a {
+      display: block;
+      width: 10rem;
+      padding: .5rem 1rem;
+      /*先触发父类:hover, 之后是子类的:hover生效*/ }
+      .dropdown-content a:hover {
+        background: #e0e0e0; }
+
+.dropdown-hover:hover .dropdown-content {
+  display: block; }
+
+.show {
+  display: block; }

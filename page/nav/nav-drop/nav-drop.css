@@ -1,0 +1,11 @@
+.nav {
+  background-color: #343a40; }
+  .nav > a,
+  .nav .dropdown > a {
+    color: white;
+    padding: .375rem .75rem;
+    border: none;
+    display: inline-block; }
+    .nav > a:hover,
+    .nav .dropdown > a:hover {
+      background-color: #dc3545; }

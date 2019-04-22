@@ -80,7 +80,7 @@ button:focus {
 /*按钮组*/
 .btn-bar{
     /*单独文件需要添加。*/
-    @import '../common/index';
+    @import '../common/common';
 
     @include clearfix;
 

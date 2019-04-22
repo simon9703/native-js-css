@@ -46,6 +46,10 @@ p {
   font-weight: 400;
   margin-bottom: 1rem; }
 
+a {
+  color: #000;
+  text-decoration: none; }
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -65,6 +69,71 @@ img {
   vertical-align: middle; }
 
 /*BFC 与 清除浮动*/
+/*用于背景*/
+.bg-blue,
+.bg-primary {
+  background-color: #007bff; }
+
+.bg-green,
+.bg-success {
+  background-color: #28a745; }
+
+.bg-tea,
+.bg-info {
+  background-color: #17a2b8; }
+
+.bg-yellow,
+.bg-warning {
+  background-color: #ffc107; }
+
+.bg-red,
+.bg-danger {
+  background-color: #dc3545; }
+
+.bg-gray,
+.bg-secondary {
+  background-color: #6c757d; }
+
+.bg-dark {
+  background-color: #343a40; }
+
+.bg-light {
+  background-color: #f8f9fa; }
+
+/*用于字体*/
+.text-blue,
+.text-primary {
+  color: #007bff; }
+
+.text-green,
+.text-success {
+  color: #28a745; }
+
+.text-tea,
+.text-info {
+  color: #17a2b8; }
+
+.text-yellow,
+.text-warning {
+  color: #ffc107; }
+
+.text-red,
+.text-danger {
+  color: #dc3545; }
+
+.text-gray,
+.text-secondary {
+  color: #6c757d; }
+
+.text-dark {
+  color: #343a40; }
+
+.text-light {
+  color: #f8f9fa; }
+
+.text-white {
+  color: #fff; }
+
 /*基础button*/
 .btn, .btn-outline-blue, .btn-link {
   display: inline-block;
@@ -167,6 +236,9 @@ button:focus {
   .btn-bar p {
     font-weight: 400;
     margin-bottom: 1rem; }
+  .btn-bar a {
+    color: #000;
+    text-decoration: none; }
   .btn-bar ul {
     list-style-type: none;
     margin: 0;
@@ -191,3 +263,264 @@ button:focus {
     display: table; }
   .btn-bar .btn, .btn-bar .btn-outline-blue, .btn-bar .btn-link {
     border-radius: 0; }
+
+/*hover时显示下拉菜单*/
+.dropdown, .dropdown-hover {
+  display: inline-block;
+  position: relative; }
+  .dropdown-btn {
+    padding: .375rem .75rem;
+    color: white;
+    background-color: #343a40;
+    user-select: none;
+    cursor: pointer; }
+    .dropdown-btn:hover {
+      background-color: rgba(52, 58, 64, 0.8); }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background: #f9f9f9;
+    transition: 3s;
+    /*同父布局同宽*/ }
+    .dropdown-content a {
+      display: block;
+      width: 10rem;
+      padding: .5rem 1rem;
+      /*先触发父类:hover, 之后是子类的:hover生效*/ }
+      .dropdown-content a:hover {
+        background: #e0e0e0; }
+
+.dropdown-hover:hover .dropdown-content {
+  display: block; }
+
+.show {
+  display: block; }
+
+/*用于背景*/
+.bg-blue,
+.bg-primary {
+  background-color: #007bff; }
+
+.bg-green,
+.bg-success {
+  background-color: #28a745; }
+
+.bg-tea,
+.bg-info {
+  background-color: #17a2b8; }
+
+.bg-yellow,
+.bg-warning {
+  background-color: #ffc107; }
+
+.bg-red,
+.bg-danger {
+  background-color: #dc3545; }
+
+.bg-gray,
+.bg-secondary {
+  background-color: #6c757d; }
+
+.bg-dark {
+  background-color: #343a40; }
+
+.bg-light {
+  background-color: #f8f9fa; }
+
+/*用于字体*/
+.text-blue,
+.text-primary {
+  color: #007bff; }
+
+.text-green,
+.text-success {
+  color: #28a745; }
+
+.text-tea,
+.text-info {
+  color: #17a2b8; }
+
+.text-yellow,
+.text-warning {
+  color: #ffc107; }
+
+.text-red,
+.text-danger {
+  color: #dc3545; }
+
+.text-gray,
+.text-secondary {
+  color: #6c757d; }
+
+.text-dark {
+  color: #343a40; }
+
+.text-light {
+  color: #f8f9fa; }
+
+.text-white {
+  color: #fff; }
+
+/*基础button*/
+.btn, .btn-outline-blue, .btn-link {
+  display: inline-block;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  cursor: pointer;
+  /*指定字体大小(可修改)*/
+  font-size: 1rem;
+  line-height: 1.5;
+  /*取消button样式边框*/
+  border: 1px solid transparent;
+  /*文字不换行居中*/
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /*关闭文本选中*/
+  user-select: none;
+  /*与其他button垂直居中对其*/
+  vertical-align: middle;
+  /*颜色等过渡*/
+  transition: .15s; }
+
+button:focus {
+  /*取消button点击时，浅蓝色外边框*/
+  outline: 0; }
+
+/*外边框样式button*/
+.btn-outline-blue {
+  border: solid 1px #007bff;
+  color: #007bff;
+  /*取消button背景灰色*/
+  background-color: white; }
+  .btn-outline-blue:hover {
+    border: solid 1px transparent;
+    background-color: #007bff;
+    color: white; }
+
+/*链接样式*/
+.btn-link {
+  background-color: transparent;
+  color: #007bff; }
+  .btn-link:hover {
+    color: #0056b3;
+    text-decoration: underline; }
+
+/*hover样式*/
+.btn-hover:hover {
+  color: #000;
+  background: #ccc; }
+
+.btn-hover-shadow:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); }
+
+/*按钮组*/
+.btn-bar {
+  /*单独文件需要添加。*/
+  /*去除浏览器默认8px留白*/
+  /*通用样式*/
+  /*关闭文本选中*/
+  /*消除段落默认空隙。*/
+  /*轻细标题*/
+  /*图片大小始终填满父布局。（默认原图大小）*/
+  /*BFC 与 清除浮动*/
+  /*bfc--> 防止margin-top子元素与父元素一起偏移。*/
+  background-color: yellow; }
+  .btn-bar body {
+    margin: 0;
+    padding: 0; }
+  .btn-bar * {
+    /*统一字体。字体不同，不同组件的宽高右差异。*/
+    font-family: Monospaced Number, Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+    /*修改盒子*/
+    box-sizing: border-box;
+    /*单词换行*/
+    word-break: break-all;
+    /*其他可选*/
+    line-height: 1.5; }
+  .btn-bar a,
+  .btn-bar span {
+    user-select: none; }
+  .btn-bar h1,
+  .btn-bar h2,
+  .btn-bar h3,
+  .btn-bar h4,
+  .btn-bar h5,
+  .btn-bar h6,
+  .btn-bar p {
+    margin: 0;
+    padding: 0; }
+  .btn-bar h1,
+  .btn-bar h2,
+  .btn-bar h3,
+  .btn-bar h4,
+  .btn-bar h5,
+  .btn-bar h6 {
+    font-weight: 300;
+    /*默认下边距离 .2rem*/
+    margin-bottom: 1.2rem; }
+  .btn-bar p {
+    font-weight: 400;
+    margin-bottom: 1rem; }
+  .btn-bar a {
+    color: #000;
+    text-decoration: none; }
+  .btn-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    .btn-bar ul > li {
+      display: table-cell; }
+  .btn-bar img {
+    width: 100%;
+    height: 100%;
+    /*width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;*/
+    /*与文字中线对齐。*/
+    vertical-align: middle; }
+  .btn-bar::before {
+    content: "";
+    display: table; }
+  .btn-bar::after {
+    content: "";
+    clear: both;
+    display: table; }
+  .btn-bar .btn, .btn-bar .btn-outline-blue, .btn-bar .btn-link {
+    border-radius: 0; }
+
+/*hover时显示下拉菜单*/
+.dropdown, .dropdown-hover {
+  display: inline-block;
+  position: relative; }
+  .dropdown-btn {
+    padding: .375rem .75rem;
+    color: white;
+    background-color: #343a40;
+    user-select: none;
+    cursor: pointer; }
+    .dropdown-btn:hover {
+      background-color: rgba(52, 58, 64, 0.8); }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background: #f9f9f9;
+    transition: 3s;
+    /*同父布局同宽*/ }
+    .dropdown-content a {
+      display: block;
+      width: 10rem;
+      padding: .5rem 1rem;
+      /*先触发父类:hover, 之后是子类的:hover生效*/ }
+      .dropdown-content a:hover {
+        background: #e0e0e0; }
+
+.dropdown-hover:hover .dropdown-content {
+  display: block; }
+
+.show {
+  display: block; }
