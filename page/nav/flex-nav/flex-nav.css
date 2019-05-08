@@ -37,7 +37,7 @@
     /*单词换行*/
     word-break: break-all;
     /*其他可选*/
-    line-height: 1.5; }
+    line-height: 1.2; }
   .nav-bar a,
   .nav-bar span {
     user-select: none; }
@@ -56,12 +56,10 @@
   .nav-bar h4,
   .nav-bar h5,
   .nav-bar h6 {
-    font-weight: 300;
-    /*默认下边距离 .2rem*/
-    margin-bottom: 1.2rem; }
-  .nav-bar p {
     font-weight: 400;
-    margin-bottom: 1rem; }
+    /*默认下边距离 .2rem*/ }
+  .nav-bar p {
+    font-weight: 400; }
   .nav-bar a {
     color: #000;
     text-decoration: none; }
@@ -76,10 +74,8 @@
     height: 100%;
     /*width: auto;
     height: auto;
-    max-width: 100%;
-    max-height: 100%;*/
-    /*与文字中线对齐。*/
-    vertical-align: middle; }
+    max-width: 100%;  // 最大不超过原图的xx%
+    max-height: 100%;*/ }
   .nav-bar .bg-blue,
   .nav-bar .bg-primary {
     background-color: #007bff; }
@@ -192,7 +188,7 @@
       /*单词换行*/
       word-break: break-all;
       /*其他可选*/
-      line-height: 1.5; }
+      line-height: 1.2; }
     .nav-bar .btn-bar a,
     .nav-bar .btn-bar span {
       user-select: none; }
@@ -211,12 +207,10 @@
     .nav-bar .btn-bar h4,
     .nav-bar .btn-bar h5,
     .nav-bar .btn-bar h6 {
-      font-weight: 300;
-      /*默认下边距离 .2rem*/
-      margin-bottom: 1.2rem; }
-    .nav-bar .btn-bar p {
       font-weight: 400;
-      margin-bottom: 1rem; }
+      /*默认下边距离 .2rem*/ }
+    .nav-bar .btn-bar p {
+      font-weight: 400; }
     .nav-bar .btn-bar a {
       color: #000;
       text-decoration: none; }
@@ -231,10 +225,8 @@
       height: 100%;
       /*width: auto;
       height: auto;
-      max-width: 100%;
-      max-height: 100%;*/
-      /*与文字中线对齐。*/
-      vertical-align: middle; }
+      max-width: 100%;  // 最大不超过原图的xx%
+      max-height: 100%;*/ }
     .nav-bar .btn-bar::before {
       content: "";
       display: table; }

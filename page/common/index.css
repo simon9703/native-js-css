@@ -13,7 +13,7 @@ body {
   /*单词换行*/
   word-break: break-all;
   /*其他可选*/
-  line-height: 1.5; }
+  line-height: 1.2; }
 
 /*关闭文本选中*/
 a,
@@ -38,13 +38,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 300;
-  /*默认下边距离 .2rem*/
-  margin-bottom: 1.2rem; }
+  font-weight: 400;
+  /*默认下边距离 .2rem*/ }
 
 p {
-  font-weight: 400;
-  margin-bottom: 1rem; }
+  font-weight: 400; }
 
 a {
   color: #000;
@@ -63,10 +61,8 @@ img {
   height: 100%;
   /*width: auto;
   height: auto;
-  max-width: 100%;
-  max-height: 100%;*/
-  /*与文字中线对齐。*/
-  vertical-align: middle; }
+  max-width: 100%;  // 最大不超过原图的xx%
+  max-height: 100%;*/ }
 
 /*BFC 与 清除浮动*/
 /*用于背景*/
@@ -211,7 +207,7 @@ button:focus {
     /*单词换行*/
     word-break: break-all;
     /*其他可选*/
-    line-height: 1.5; }
+    line-height: 1.2; }
   .btn-bar a,
   .btn-bar span {
     user-select: none; }
@@ -230,12 +226,10 @@ button:focus {
   .btn-bar h4,
   .btn-bar h5,
   .btn-bar h6 {
-    font-weight: 300;
-    /*默认下边距离 .2rem*/
-    margin-bottom: 1.2rem; }
-  .btn-bar p {
     font-weight: 400;
-    margin-bottom: 1rem; }
+    /*默认下边距离 .2rem*/ }
+  .btn-bar p {
+    font-weight: 400; }
   .btn-bar a {
     color: #000;
     text-decoration: none; }
@@ -250,10 +244,8 @@ button:focus {
     height: 100%;
     /*width: auto;
     height: auto;
-    max-width: 100%;
-    max-height: 100%;*/
-    /*与文字中线对齐。*/
-    vertical-align: middle; }
+    max-width: 100%;  // 最大不超过原图的xx%
+    max-height: 100%;*/ }
   .btn-bar::before {
     content: "";
     display: table; }

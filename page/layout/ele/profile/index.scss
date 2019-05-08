@@ -1,0 +1,144 @@
+.container {
+    background-color: #f5f5f5; // 背景色
+}
+
+img {
+    display: block; // 与父级元素同高。
+}
+
+.top {
+    // 标题栏
+    padding: 1.5rem 1rem; //外偏移从父布局设置。
+    background: linear-gradient(to right, #64B5F6, #2196F3);
+}
+
+.feature {
+    display: flex;
+    align-items: center; // 图片与文字垂直居中，高度为图片高。
+
+    &-img {
+        // 左右图片固定大小。
+        width: 4rem;
+        height: 4rem;
+    }
+
+    &-link {
+        width: .75rem;
+        height: .75rem;
+    }
+
+    &-info {
+        flex: 1; // 占满剩余空间
+        margin-left: 1.1rem;
+        color: white;
+
+        .primary {
+            font-size: 1.333333rem;
+            margin-bottom: .5rem;
+            font-weight: bold;
+        }
+
+        .secondary {
+            // 图文行
+            display: flex;
+            align-items: center; // 图片与文字垂直居中。
+
+            font-size: .75rem;
+
+            img {
+                width: .75rem;
+                height: .75rem;
+                margin-right: .15rem; // 与文字间隔
+            }
+        }
+    }
+}
+
+// 计数栏
+.index {
+    display: flex;
+    background-color: white;
+
+    &-item {
+        flex: 1; //平分
+        padding: 1.2rem 0;
+
+        p {
+            text-align: center; // 文字居中显示
+            color: #666; // 淡点的字体颜色
+        }
+
+        .index-num {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .index-unit {
+            font-size: .75rem;
+        }
+
+        .index-desc {
+            margin-top: .2rem;
+            font-size: .75rem;
+            font-weight: 700;
+        }
+
+        &:first-child {
+            // 第一个元素
+            border-right: 1px solid #eee;
+
+            p:first-child {
+                color: #dc3545;
+                opacity: .8;
+            }
+        }
+
+        &:nth-child(2) {
+
+            // 第二个元素
+            p:first-child {
+                color: #28a745;
+                opacity: .8;
+
+            }
+        }
+    }
+}
+
+// 条目
+.info {
+    margin-top: .625rem;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+
+    &-item {
+        display: flex;
+        align-items: center;
+        padding: .875rem .625rem;
+        background-color: white;
+
+        .detail {
+            flex: 1;
+            margin-left: .75rem;
+            color: #333;
+        }
+
+        .icon-nav {
+            width: 1rem;
+            height: 1rem;
+            display: block;
+
+            img {
+            }
+        }
+
+        .icon-skip {
+            width: .75rem;
+            height: .75rem;
+            display: block;
+
+            img {
+            }
+        }
+    }
+}

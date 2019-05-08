@@ -16,10 +16,11 @@ body {
     word-break: break-all;
 
     /*其他可选*/
-    line-height: 1.5;  // 行间距大一点。
+    line-height: 1.2;  // 行间距大一点。
     // font-size: 1rem;
     // color: #242a40;
     // background-color: #f4f5f6;
+    // user-select: none;
 }
 
 /*关闭文本选中*/
@@ -47,15 +48,15 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 300; // 默认400
+    font-weight: 400; 
 
     /*默认下边距离 .2rem*/
-    margin-bottom: 1.2rem;
+    // margin-bottom: 1.2rem;
 }
 
 p {
     font-weight: 400;
-    margin-bottom: 1rem;
+    // margin-bottom: 1rem;
 }
 
 a {
@@ -76,17 +77,14 @@ ul {
 
 /*图片大小始终填满父布局。（默认原图大小）*/
 img {
-    width: 100%;
-    height: 100%;
+    width: 100%; 
+    height: 100%; // 与(block)父布局高度相同。
 
     // 小图保持原形，大图不超过布局。
     /*width: auto;
     height: auto;
-    max-width: 100%;
+    max-width: 100%;  // 最大不超过原图的xx%
     max-height: 100%;*/
-
-    /*与文字中线对齐。*/
-    vertical-align: middle;
 }
 
 /*BFC 与 清除浮动*/
