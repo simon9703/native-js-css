@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="swipper">
+            <div class="swipper-list">
+                <img class="swipper-item" src="../img/girl5.jpg" alt="">
+                <img class="swipper-item" src="../img/girl1.jpg" alt="">
+                <img class="swipper-item" src="../img/girl3.jpg" alt="">
+                <img class="swipper-item" src="../img/girl4.jpg" alt="">
+                <img class="swipper-item" src="../img/girl5.jpg" alt="">
+                <img class="swipper-item" src="../img/girl1.jpg" alt="">
+            </div>
+        </div>
+        <div class="arrows">
+            <span class="arrow pre">
+                <</span> <span class="arrow next">>
+            </span>
+        </div>
+
+        <div class="indicator">
+            <div class="indicator-btn"></div>
+            <div class="indicator-btn"></div>
+            <div class="indicator-btn"></div>
+            <div class="indicator-btn"></div>
+            <div class="indicator-btn"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let total = document.querySelectorAll('.swipper-item').length;
+    let index = 1;
+    let imgWidth = 600;
+    let pre = document.querySelector('.pre')
+    let next = document.querySelector('.next')
+    let swipperList = document.querySelector('.swipper-list');
+
+    function swip() {
+        ++index
+        swipperList.style.left = index * - imgWidth + "px";
+        console.log('pre', index)
+
+        if (index >= 5) {
+            index = 1;
+
+            console.log('next', index)
+            setTimeout(function () {
+                swipperList.style.transition = 'none'
+                swipperList.style.left = index * -imgWidth + "px"
+                setTimeout(function () {
+                    swipperList.style.transition = 'ease 2s'
+                }, 100)
+            }, 2000)
+
+        }
+
+        // swipperList.style.transform = "translate(" + -index * imgWidth + "px)"
+    }
+
+    pre.addEventListener('click', function () {
+        swip()
+    })
+
+    next.addEventListener('click', function () {
+        swip()
+    })
+
+</script>
+
+</html>

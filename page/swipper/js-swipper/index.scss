@@ -1,0 +1,61 @@
+@import '../../common/common';
+
+
+$swipper-width: 600px;
+$swipper-height: 400px;
+$total: 6;
+
+.swipper {  // 含滚动条最外层
+    width: $swipper-width;
+    height: $swipper-height;
+    overflow: hidden;  // 隐藏其他图片
+    position: relative;
+
+    .swipper-list {
+        position: absolute;
+        width: $swipper-width * $total;
+        @include clearfix;
+        left: -$swipper-width;
+        // transform: translate(-$swipper-width);
+        transition: ease 2s;
+
+        .swipper-item {
+            float: left;
+            width: $swipper-width;
+            height: $swipper-height;
+        }
+    }
+}
+
+.indicator {
+    @include clearfix;
+
+    .indicator-btn {
+        float: left;
+
+        width: 40px;
+        height: 18px;
+        margin-left: 4px;
+
+        border-radius: 12px;
+        background-color: #BBDEFB;
+
+        &:hover {
+            background-color: #42A5F5;
+        }
+    }
+}
+
+.arrows {
+    .arrow {
+        display: inline-block;
+        font-size: 2rem;
+        line-height: 1;
+        padding:.75rem  1.5rem;
+
+
+        &:hover {
+            background-color: #f5f5f5;
+        }
+    }
+}

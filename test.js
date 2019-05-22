@@ -1,5 +1,8 @@
-list = [1,2,3,4,5]
+user = {}
+list = []
 
-console.log(list.splice(0,1));
+console.log(list[0]);
 
-console.log(list)
+// console.log(Object.keys("abc"))
+
+// console.log(Object.keys(undefined))

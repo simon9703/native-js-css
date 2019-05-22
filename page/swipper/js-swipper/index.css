@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/*去除浏览器默认8px留白*/
+body {
+  margin: 0;
+  padding: 0; }
+
+/*通用样式*/
+* {
+  /*统一字体。字体不同，不同组件的宽高右差异。*/
+  font-family: Monospaced Number, Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+  /*修改盒子*/
+  box-sizing: border-box;
+  /*单词换行*/
+  word-break: break-all;
+  /*其他可选*/
+  line-height: 1.2; }
+
+/*关闭文本选中*/
+a,
+span {
+  user-select: none; }
+
+/*消除段落默认空隙。*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0; }
+
+/*轻细标题*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  /*默认下边距离 .2rem*/ }
+
+p {
+  font-weight: 400; }
+
+a {
+  color: #000;
+  text-decoration: none; }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+  ul > li {
+    display: table-cell; }
+
+/*图片大小始终填满父布局。（默认原图大小）*/
+img {
+  width: 100%;
+  height: 100%;
+  /*width: auto;
+  height: auto;
+  max-width: 100%;  // 最大不超过原图的xx%
+  max-height: 100%;*/ }
+
+/*BFC 与 清除浮动*/
+.swipper {
+  width: 600px;
+  height: 400px;
+  overflow: hidden;
+  position: relative; }
+  .swipper .swipper-list {
+    position: absolute;
+    width: 3600px;
+    /*bfc--> 防止margin-top子元素与父元素一起偏移。*/
+    left: -600px;
+    transition: ease 2s; }
+    .swipper .swipper-list::before {
+      content: "";
+      display: table; }
+    .swipper .swipper-list::after {
+      content: "";
+      clear: both;
+      display: table; }
+    .swipper .swipper-list .swipper-item {
+      float: left;
+      width: 600px;
+      height: 400px; }
+
+.indicator {
+  /*bfc--> 防止margin-top子元素与父元素一起偏移。*/ }
+  .indicator::before {
+    content: "";
+    display: table; }
+  .indicator::after {
+    content: "";
+    clear: both;
+    display: table; }
+  .indicator .indicator-btn {
+    float: left;
+    width: 40px;
+    height: 18px;
+    margin-left: 4px;
+    border-radius: 12px;
+    background-color: #BBDEFB; }
+    .indicator .indicator-btn:hover {
+      background-color: #42A5F5; }
+
+.arrows .arrow {
+  display: inline-block;
+  font-size: 2rem;
+  line-height: 1;
+  padding: .75rem  1.5rem; }
+  .arrows .arrow:hover {
+    background-color: #f5f5f5; }
