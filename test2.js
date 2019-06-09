@@ -1,3 +1,6 @@
+function write(content) {
+    console.log(content)}
+
 function Student(x, y) {
     this.x = x
     this.y = y
@@ -89,11 +92,16 @@ class PersonSon extends Person {
     }
 }
 Person.staticProp = 'staticSon'
-
+Object.prototype.sprit = 'haha'
 let p = new Person(10, 20)
 let ps = new PersonSon(11, 22)
 
 // ps.m()
 
+console.log(Object.prototype.__proto__ === null)
+console.log(Person.prototype.__proto__.__proto__ === Person.prototype.__proto__.__proto__)
+console.log(Function.prototype.__proto__.__proto__)
+Function.prototype.ff = 'fff'
+console.log(Object.prototype.__proto__)
 
 p.say()
