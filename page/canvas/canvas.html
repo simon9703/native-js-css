@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<canvas id="can" width="600" height="600"></canvas>
+
+
+</body>
+<script>
+    let canvas = document.getElementById('can')
+    let context = canvas.getContext('2d')
+    console.log(context)
+
+    // 矩形
+    // context.fillStyle = '#B9F6CA'
+    // context.fillRect(20,20,100,100)
+    // context.strokeRect(100,20,100,100)
+    // context.clearRect(99,19,102,102)
+
+    // 直线
+    // context.beginPath()
+    // context.moveTo(50, 50)
+    // context.lineTo(100, 50)
+    // context.lineTo(100, 150)
+    //
+    // context.closePath()
+    // context.fillStyle ='#F8BBD0'
+    // context.fill()
+    // // context.stroke()
+
+    //圆弧
+    // context.beginPath()
+    // context.moveTo(50, 50)
+    // context.lineTo(50, 50)
+    // context.arc(100, 100,100, 0, -Math.PI*0.5, false)
+    // context.stroke()
+    // context.closePath()
+    // context.lineTo(100, 150)
+
+    context.beginPath()
+    context.moveTo(50,50)
+    context.arcTo(100, 50, 100, 100, 90)
+    context.stroke()
+
+</script>
+
+<style>
+    body {
+        background-color: #E1F5FE;
+    }
+
+    #can {
+        margin: 50px 0 0 150px;
+        background: white;
+    }
+</style>
+</html>

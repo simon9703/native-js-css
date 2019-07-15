@@ -9,33 +9,33 @@
 </head>
 
 <body>
-    <div>  </div>
-
+    <div id="tou" style="background:red;width:20px;height:20px"></div>
+    <div id="tou2" style="background:green;"></div>
 </body>
+<script>
+    document.addEventListener('click', event => {
+        console.log('mouse', event)
+    })
+
+    let div = document.getElementById('tou')
+    let div2 = document.getElementById('tou2')
+
+    div.addEventListener('touchstart', rotate);
+    div.addEventListener('touchmove', rotate);
+    div.addEventListener('touchend', rotate);
+
+    function rotate(e) {
+        console.log(e)
+        var touch = e.changedTouches.item(0);
+        e.preventDefault();
+
+        div2.style.width = touch.radiusX * 2 + 'px';
+        div2.style.height = touch.radiusY * 2 + 'px';
+        div2.style.transform = 'rotate(' + touch.rotationAngle + 'deg)';
+    };
+</script>
+
 <style>
-   div {
-       position: fixed;
-       top: 50%;
-       left: 50%;
-       transform: translate(-50%, -50%);
-       width: 250px;
-       height: 250px;
-       animation: zhuanquan 3s ease;
-       animation-direction: alternate;
-       animation-iteration-count: infinite;
-       animation-fill-mode: both;
-   }
-
-   @keyframes zhuanquan {
-       from {
-          background: red;
-       }
-
-       to {
-          background:blue;
-          transform: rotate(180deg) scale(2.5)
-       }
-   }
 </style>
 
 </html>
