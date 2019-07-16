@@ -28,7 +28,7 @@ class Person{
         console.log('im static m')
     }
 
-    static stableBocy() {
+    static stableBody() {
         this.stableMethod()
     }
 
