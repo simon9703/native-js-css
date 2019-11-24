@@ -1,29 +1,26 @@
-Object.name00 = 'aaa'
-Object.prototype.namexx = 'xxxx'
-
-function Student(x, y) {
-    this.x = x
-    this.y = y
-}
-
-class Person{
-    constructor(x, y) {
-        this.x = x
-        this.y = y
-    }
-
-    say() {
-        console.log(`im in${this.x}` )
+var name = 'window'
+let obj = {
+    name: 'zsm',
+    f1: function() {
+        console.log(this.name)
+    },
+    f2: function() {
+        (() => console.log(this.name))()
     }
 }
+let xxx = {name: 'sss'}
+let fff1 = obj.f1
+let fff2 = obj.f2
 
-let p = new Person('最初ppp', 40)
-let s = new Person('最初sss', 40)
+obj.f1()
+obj.f2()
+console.log('==========')
 
-p.say()
-let pp = Object.getPrototypeOf(p)
-let pp2 = Object.getPrototypeOf(Person)
-let pp3 = p.__proto__
-let pp4 = Person.__proto__
-
-console.log(p)
+fff1()
+fff2()
+console.log('==========')
+obj.f1.apply(xxx)
+obj.f2.apply(xxx)
+console.log('==========')
+fff1.apply(xxx)
+fff2.apply(xxx)

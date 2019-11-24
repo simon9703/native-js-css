@@ -1,41 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <script src="./js/throttle.js"></script>
 </head>
+<body style="height: 10000px;">
+<button id="btn">点我</button>
+<button id="btn2">点我22</button>
 
-<body>
-    <div id="tou" style="background:red;width:20px;height:20px"></div>
-    <div id="tou2" style="background:green;"></div>
 </body>
+
 <script>
-    document.addEventListener('click', event => {
-        console.log('mouse', event)
-    })
+    var name = '1234'
+    var father = {
+        name: 'father'
+    }
+    let dd = debounce(function(){
+        console.log(this.name)
+    }, 500, {leading: true, context: father})
+    let tt = throttle(function(){
+        console.log(this.name)
+    }, 500, {context: father})
 
-    let div = document.getElementById('tou')
-    let div2 = document.getElementById('tou2')
+    let btn = document.getElementById('btn')
+    let btn2 = document.getElementById('btn2')
+    btn.addEventListener('click', dd)
+    btn2.addEventListener('click', tt)
 
-    div.addEventListener('touchstart', rotate);
-    div.addEventListener('touchmove', rotate);
-    div.addEventListener('touchend', rotate);
-
-    function rotate(e) {
-        console.log(e)
-        var touch = e.changedTouches.item(0);
-        e.preventDefault();
-
-        div2.style.width = touch.radiusX * 2 + 'px';
-        div2.style.height = touch.radiusY * 2 + 'px';
-        div2.style.transform = 'rotate(' + touch.rotationAngle + 'deg)';
-    };
+    window.onscroll = tt
 </script>
-
-<style>
-</style>
-
 </html>
