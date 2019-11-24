@@ -22,7 +22,7 @@ Person.call(p2)
 Person.prototype.common = 'i\'m new, after creating!'
 Person.prototype.writeCommon = function () { console.log(this.name) }
 Object.prototype.color = 'black'
-Object.prototype.writeColor = function () { console.log(this.name) }
+Object.prototype.writeColor = function ( ){ console.log(this.name) }
 
 var t = Object.create(p)
 t.fruit = '苹果'
