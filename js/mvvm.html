@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<header>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="./mvvm.js"></script>
+</header>
+
+<body>
+  <div id="app">
+    <div class="item">
+      1 2 3 {{nick}} <span>sss</span>
+      <h5>姓名</h5>
+      <label for="nick">{{nick}}{{age}}</label>
+      <input type="text" id="nick" name="nick" oninput="changPro('nick', this)">
+    </div>
+    <div class="item">
+      <h5>年龄</h5>
+      <label for="age">{{age}}</label>
+      <input type="text" id="age" name="age">
+    </div>
+    <div >小伙伴们：{{friends.aa}}</div>
+  </div>
+</body>
+
+<script>
+  let mv = {
+    el: "#app",
+    data: {
+      nick: '张思蒙ss',
+      age: '18',
+      friends: {
+        aa: '小伙伴aa',
+        bb: '小伙伴bb'
+      }
+    }
+  }
+  let vue = new Mvvm (mv)
+  console.log('vue:', vue)
+
+  function changPro(pro, context) {
+    mv.data[pro] = context.value
+  }
+
+</script>

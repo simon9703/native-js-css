@@ -1,5 +1,4 @@
-function aa() {
-
-}
-let a = new aa()
-console.log(typeof a)
+["nick"].reduce((pre, current) => {
+    console.log('xxx', pre, current, pre[current])
+    return pre[current]
+}, 1)
