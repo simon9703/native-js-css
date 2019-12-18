@@ -1,32 +1,67 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <script src="./js/throttle.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+
+    <style>
+        h3 {
+            color: green;
+        }
+    </style>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => console.log('DOMContentLoaded'))
+        window.addEventListener('load', () => console.log('load'))
+
+        function detect() {
+            console.log(document.getElementById('content'))
+        }
+
+        detect()
+        setTimeout(detect)
+        // }
+    </script>
+    <!--        <script src="test.js"></script>-->
+
+    <!--    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>-->
+
+    <style>
+        h3 {
+            color: red;
+        }
+    </style>
+
+    <!--    <script src="test2.js"></script>-->
+
+    <!--        <script src="w3c.js" defer></script>-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./w3c.css">
+    <script src="test.js" ></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+    <!--    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js" defer></script>-->
+    <!--    <script src="test.js"></script>-->
+    <!--    <script src="http s://unpkg.com/vue/dist/vue.js" async></script>-->
+    <!--    <script src="https://unpkg.com/element-ui/lib/index.js" async></script>-->
+    <!--    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js" defer></script>-->
+
+    <!--    <script src="test3.js" defer></script>-->
+    <!--    <link href="https://cdn.bootcss.com/bootstrap-table/1.15.4/bootstrap-table.css" rel="stylesheet">-->
+    <!--    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">-->
 </head>
-<body style="height: 10000px;">
-<button id="btn">点我</button>
-<button id="btn2">点我22</button>
 
+<body>
+<div class="app">
+    <h3 id="content">看见了内容3！</h3>
+</div>
+
+<div>
+    <img src="./img/meizi/girl1.jpg" alt="">
+    <img src="./img/meizi/girl2.jpg" alt="">
+    <img src="./img/meizi/girl3.jpg" alt="">
+</div>
 </body>
-
-<script>
-    var name = '1234'
-    var father = {
-        name: 'father'
-    }
-    let dd = debounce(function(){
-        console.log(this.name)
-    }, 500, {leading: true, context: father})
-    let tt = throttle(function(){
-        console.log(this.name)
-    }, 500, {context: father})
-
-    let btn = document.getElementById('btn')
-    let btn2 = document.getElementById('btn2')
-    btn.addEventListener('click', dd)
-    btn2.addEventListener('click', tt)
-
-    window.onscroll = tt
-</script>
 </html>

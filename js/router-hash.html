@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Router</title>
+</head>
+<body>
+<div class="container">
+    <ul>
+        <li><a href="#/home">首页</a></li>
+        <li><a href="#/news">新闻</a></li>
+        <li><a href="#/music">音乐</a></li>
+        <li><a href="#/undefined">其他</a></li>
+    </ul>
+
+    <button id="back">back</button>
+    <button id="forwards">forward</button>
+</div>
+
+<div id="router-view-hash">
+    content-hash
+</div>
+</body>
+<script>
+    let routerViewHash = document.querySelector('#router-view-hash')
+
+    class HashRouter {
+        constructor() {
+            this.routers = {} // 存储路由对应事件
+            this.current = '' // 当前路由
+            window.addEventListener('DOMContentLoaded', () => { // 在页面初次加载，要主动触发一次（对应非根路径进入）
+                console.log('init router')
+                this.refresh()
+            })
+            window.addEventListener('hashchange', () => { // 函数包装，保证只在此对象的作用域的运行。
+                this.refresh()
+            })
+        }
+
+        route(path, fn) {  // 注册路由
+            this.routers[path] = fn || function () {
+            }
+        }
+
+        refresh() {
+            this.current = location.hash.slice(1) || '/'
+            this.routers[this.current] && this.routers[this.current]()
+            console.log('hash change to:', this.current)
+        }
+    }
+
+    let pathChange = function (path) {
+        routerViewHash.innerHTML = path
+    }
+
+    let rr = new HashRouter()
+    rr.route('/', pathChange.bind(null, '/'))
+    rr.route('/home', pathChange.bind(null, '/home'))
+    rr.route('/news', pathChange.bind(null, '/news'))
+    rr.route('/music', pathChange.bind(null, '/music'))
+
+</script>
+</html>

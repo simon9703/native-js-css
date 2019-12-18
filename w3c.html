@@ -5,205 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <style>
+        h3 {
+            color: green;
+        }
+    </style>
+
+    <script>
+       window.addEventListener('DOMContentLoaded', () => console.log('DOMContentLoaded'))
+       window.addEventListener('load', () => console.log('load'))
+
+       function detect() {
+           console.log(document.getElementById('content'))
+       }
+
+       detect()
+       setTimeout(detect)
+        // }
+    </script>
+<!--        <script src="test.js"></script>-->
+
+<!--    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>-->
+
+    <style>
+        h3 {
+            color: red;
+        }
+    </style>
+
+<!--    <script src="test2.js"></script>-->
+
+<!--        <script src="w3c.js" defer></script>-->
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="test.js" defer></script>
+    <script src="test3.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./w3c.css">
+
+
+    <!--    <script src="http s://unpkg.com/vue/dist/vue.js" async></script>-->
+<!--    <script src="https://unpkg.com/element-ui/lib/index.js" async></script>-->
+<!--    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js" defer></script>-->
+
+<!--    <link href="https://cdn.bootcss.com/bootstrap-table/1.15.4/bootstrap-table.css" rel="stylesheet">-->
+<!--    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">-->
 </head>
 
 <body>
-    <div class="main_div">
-        <div class="arrows">
-              <span title="1" class="arrow"><</span>
-              <span title="0" class="arrow" style="float: right">></span>
-        </div>
-     
-        <ul class="ul_img">
-              <li class="li_img"><img src="./img/meizi/girl1.jpg" alt=""></li>
-              <li class="li_img"><img src="./img/meizi/girl2.jpg" alt=""></li>
-              <li class="li_img"><img src="./img/meizi/girl3.jpg" alt=""></li>
-              <li class="li_img"><img src="./img/meizi/girl4.jpg" alt=""></li>
-        </ul>
-     </div>
-     
-     <div style="margin-left: 600px">
-              <div class="div_btn"></div>
-              <div class="div_btn"></div>
-              <div class="div_btn"></div>
-              <div class="div_btn"></div>
-     </div>
+   <div class="app">
+       <h3 id="content">看见了内容3！</h3>
+   </div>
+  
+   <div>
+       <img src="./img/meizi/girl1.jpg" alt="">
+       <img src="./img/meizi/girl2.jpg" alt="">
+       <img src="./img/meizi/girl3.jpg" alt="">
+   </div>
 </body>
-
-<script>
-    //跑动的次数
-    var count = 0;
-    //动画的执行方向
-    var isgo = false;
-    //定义计时器对象
-    var timer;
-
-    window.onload = function () {
-        /*获取ul元素*/
-        var ul_img = document.getElementsByClassName("ul_img")[0];
-        //获取所有的li图片元素
-        var li_img = document.getElementsByClassName("li_img");
-        //获取控制方向的箭头元素
-        var arrow = document.getElementsByClassName("arrow");
-        //获取所有按钮元素
-        var div_btn = document.getElementsByClassName("div_btn");
-        div_btn[0].style.backgroundColor = "aqua";
-
-
-        /*定义计时器，控制图片移动*/
-        showtime();
-        function showtime() {
-            timer = setInterval(function () {
-                if (isgo == false) {
-                    count++;
-                    ul_img.style.transform = "translate(" + -800 * count + "px)";
-                    if (count >= li_img.length - 1) {
-                        count = li_img.length - 1;
-                        isgo = true;
-                    }
-                }
-                else {
-                    count--;
-                    ul_img.style.transform = "translate(" + -800 * count + "px)";
-                    if (count <= 0) {
-                        count = 0;
-                        isgo = false;
-                    }
-                }
-
-                for (var i = 0; i < div_btn.length; i++) {
-                    div_btn[i].style.backgroundColor = "aquamarine";
-                }
-
-                div_btn[count].style.backgroundColor = "aqua";
-
-            }, 4000)
-        }
-
-        /*鼠标进入左右方向键操作*/
-        for (var i = 0; i < arrow.length; i++) {
-            //鼠标悬停时
-            arrow[i].onmouseover = function () {
-                //停止计时器
-                clearInterval(timer);
-            }
-            //鼠标离开时
-            arrow[i].onmouseout = function () {
-                //添加计时器
-                showtime();
-            }
-            arrow[i].onclick = function () {
-                //区分左右
-                if (this.title == 0) {
-                    count++;
-                    if (count > 3) {
-                        count = 0;
-                    }
-                }
-                else {
-                    count--;
-                    if (count < 0) {
-                        count = 3;
-                    }
-                }
-
-                ul_img.style.transform = "translate(" + -800 * count + "px)";
-
-                for (var i = 0; i < div_btn.length; i++) {
-                    div_btn[i].style.backgroundColor = "aquamarine";
-                }
-                div_btn[count].style.backgroundColor = "aqua";
-            }
-        }
-
-        //鼠标悬停在底部按钮的操作
-        for (var b = 0; b < div_btn.length; b++) {
-            div_btn[b].index = b;
-            div_btn[b].onmouseover = function () {
-
-                clearInterval(timer);
-
-                for (var a = 0; a < div_btn.length; a++) {
-                    div_btn[a].style.backgroundColor = "aquamarine";
-                }
-                div_btn[this.index].style.backgroundColor = "aqua";
-                //让count值对应
-                //为了控制方向
-                if (this.index == 3) {
-                    isgo = true;
-                }
-                if (this.index == 0) {
-                    isgo = false;
-                }
-                count = this.index;
-                ul_img.style.transform = "translate(" + -800 * this.index + "px)";
-            }
-            div_btn[b].onmouseout = function () {
-                //添加计时器
-                showtime();
-            }
-        }
-    }
-</script>
-
-<style>
-    img {
-        width: 100%;
-    }
-
-    .li_img {
-        width: 800px;
-        float: left;
-        list-style: none;
-    }
-
-    .ul_img {
-        width: 6000px;
-        padding: 0px;
-        margin: 0px;
-        transition: all 2s;
-    }
-
-    .main_div {
-        width: 800px;
-        overflow: hidden;
-        position: relative;
-        top: 100px;
-        left: 350px;
-    }
-
-    .arrows {
-        z-index: 9999;
-        position: absolute;
-        padding-top: 230px;
-        width: 800px;
-    }
-
-    .arrows span {
-        font-size: 3em;
-        color: seashell;
-    }
-
-    .arrows span:hover {
-        /*变小手*/
-        cursor: pointer;
-        background-color: rgba(192, 192, 192, 0.29);
-    }
-
-    .div_btn {
-        float: left;
-        border-radius: 100px;
-        background-color: aquamarine;
-        width: 60px;
-        height: 10px;
-        margin-left: 10px;
-        margin-top: 130px;
-    }
-
-    .div_btn:hover {
-        background-color: aqua;
-
-    }
-</style>
-
 </html>
