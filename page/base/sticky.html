@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">HOME</div>
+      <h2 class="header">HEADER</h2>
+      <div class="sticky">
+        <div class="sticky-content">Sticky</div>
+      </div>
+      <div class="content">content</div>
+      <div class="footer">footer</div>
+    </div>
+  </body>
+
+  <script>
+    let nav = document.querySelector('.nav')
+    let head = document.querySelector('.header')
+    let sticky = document.querySelector('.sticky-content')
+    let stickyTop = sticky.offsetTop
+
+    let [preScrollPos, curScrollPos] = [0, 0]
+    window.addEventListener('scroll', () => {
+      curScrollPos = document.body.scrollTop || document.documentElement.scrollTop
+      console.log(curScrollPos, stickyTop)
+      if (curScrollPos > preScrollPos) {
+        nav.classList.add('hide')
+      } else {
+        nav.classList.remove('hide')
+      }
+
+      if (curScrollPos > 50) {
+        head.style.transform = 'translateX(-48px)'
+      } else {
+        head.style.transform = ''
+      }
+
+      if (curScrollPos > stickyTop) {
+        sticky.classList.add('fixed')
+      } else {
+        sticky.classList.remove('fixed')
+      }
+
+      preScrollPos = curScrollPos
+    })
+  </script>
+
+  <style lang="scss" scoped>
+    .header {
+      margin: 8rem 0 0 0;
+      padding: 1rem;
+      background: yellow;
+      transition: 0.5s;
+    }
+
+    .container div {
+      padding: 1rem;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: white;
+      background: #333;
+      opacity: 0.6;
+      transition: 0.5s ease-in-out;
+    }
+
+    .nav.hide {
+      /* // top: calc(100%); // 父布局的100% */
+      transform: translateY(-100%);
+    }
+
+    .fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .sticky {
+      height: 1.2rem + 2rem;
+      background: blue;
+    }
+
+    .header {
+      color: red;
+      background: dodgerblue;
+      opacity: 0.5;
+    }
+
+    .content {
+      height: 1500px;
+      background: linear-gradient(white, #e0e0e0);
+    }
+
+    .footer {
+      background: #999;
+    }
+  </style>
+</html>

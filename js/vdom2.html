@@ -2,9 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="app"><ul onclick="undefined"><li>今天天气真好!</li><li>明天就会下雨!</li><li>新的一年快来!</li></ul></div>
 </body>
+<script>
+    let c = createElement('ul',{
+        onclick: 'fff'
+    }, [createElement('li', {}, '今天天气真好111'),
+        createElement('li', {}, '今天天气真好222'),
+        createElement('li', {}, '今天天气真好333'),
+        createElement('li', {}, '今天天气真好444')
+    ] )
+
+    let vd = {
+        tag: 'ul',
+        props: {
+            onclick: 'fff'
+        },
+        children: [
+            {
+                tag: 'li',
+                props: {},
+                children: '今天天气真好!'
+            },
+            {
+                tag: 'li',
+                props: {},
+                children: '明天就会下雨!'
+            },
+            {
+                tag: 'li',
+                props: {},
+                children: '明天就会下雨!'
+            },
+            {
+                tag: 'li',
+                props: {},
+                children: [{
+                    tag: 'text',
+                    props: {ambulance: '测试数字节点'},
+                    children: 100
+                }]
+            }
+        ]
+    }
+</script>
 </html>

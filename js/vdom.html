@@ -2,9 +2,153 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="app"></div>
 </body>
+
+<script>
+    let number = 3
+    function jsx() { // 生成v-dom对象实例： 最小子对象为 纯文本 或 Element
+        number++
+        let chi = []
+        for (let i = 0; i < number; i++) {
+            chi.push(createElement('li',{from: 'jsx-child'}, [`今天是星期${i}!`]))
+        }
+        return createElement('ul',{from: 'jsx'}, chi )
+    }
+
+    const nodePatchTypes = { // 节点变化类型
+        CREATE: 'create node',
+        REMOVE: 'remove node',
+        REPLACE: 'replace node',
+        UPDATE: 'update node'
+    }
+    const propPatchTypes = { // 属性变化类型
+        REMOVE: 'remove prop',
+        UPDATE: 'update prop'
+    }
+
+    let pre, cur
+
+    function sample() {
+        cur = jsx()
+        let patchObj = diff(pre, cur)
+        console.log(patchObj)
+
+        // 更新节点
+        let dom = render(cur)
+        let root = document.getElementById('app')
+        while(root.firstChild)root.removeChild(root.firstChild)
+        root.appendChild(dom)
+
+        pre = cur
+    }
+
+    function Element(tag, props, children) {
+        this.tag = tag
+        this.props = props
+        this.children = children // children 为 [ Element 或 "字符串 | 数字"]
+    }
+
+    function createElement(tag,props, children) {
+        return new Element(tag, props, children)
+    }
+    
+    function render(vdom) { // vdom为 Element 或 "字符串 | 数字"
+        if (typeof vdom === 'string' || typeof vdom === 'number') {
+            return document.createTextNode(vdom) // 创建文本内容
+        }
+
+        let {tag, props, children} = vdom
+        let element = document.createElement(tag) // 创建节点
+        Object.keys(props || {}).forEach(pro => element.setAttribute(pro, props[pro])) // 设置属性
+        children.map(render).forEach(element.appendChild.bind(element)) // 创建子节点
+        return element
+    }
+
+    function diff(pre, cur) {
+        if (!pre) { // 新建
+            return {
+                type: nodePatchTypes.CREATE,
+                node: cur
+            }
+        }
+
+        if (!cur) { // 删除
+            return {
+                type: nodePatchTypes.REMOVE
+            }
+        }
+
+        if ( pre.tag !== cur.tag) { // 替换节点
+            return {
+                type: nodePatchTypes.REPLACE,
+                node: cur
+            }
+        }
+
+        if (typeof pre === 'string' || typeof pre === 'number') {
+            if (pre !== cur) {
+                return {
+                    type: nodePatchTypes.REPLACE,
+                    node: cur
+                }
+            } else {
+                return null
+            }
+        }
+
+        let patchProps = diffProps(pre, cur)
+        let patchChildren = diffChildren(pre, cur)
+        if(patchProps.length > 0 || patchChildren.length > 0) {
+            return {
+                type: nodePatchTypes.UPDATE,
+                props: patchProps,
+                children: patchChildren
+            }
+        }
+        return null
+    }
+
+    function diffProps(pre, cur) {
+        let patches = []
+        let allProps = {...pre.props, ...cur.props}
+        Object.keys(allProps).forEach(pro => {
+            if (!cur.props[pro]) { // 删除属性
+               patches.push({
+                   pro,
+                   type: propPatchTypes.REMOVE
+               })
+            } else if (cur.props[pro] !== pre.props[pro]) { // 更新或添加属性
+                patches.push({
+                    pro,
+                    value: cur.props[pro],
+                    type: propPatchTypes.UPDATE
+                })
+            }
+        })
+        return patches
+    }
+
+function diffChildren(pre, cur) Aegj]]=p            let patches = []
+        let maxLength = Math.max(pre.children.length, cur.children.length)
+        for (let i = 0; i < maxLength; i++) {
+            let result =  diff(pre.children[i], cur.children[i])
+            result && patches.push(result)
+        }
+        return patches
+    }
+
+    function patch() {
+
+    }
+
+
+    sample()
+    setInterval(() => {
+        sample()
+    }, 3000)
+</script>
 </html>

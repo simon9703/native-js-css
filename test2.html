@@ -22,45 +22,25 @@
     }
   </style>
   <body>
+    <div>50000 dom</div>
     <div class="container"></div>
   </body>
   <script>
     let app = document.querySelector('.container')
     let startTIme = new Date()
     let total = 10000
-    let gap = 20
     console.log(startTIme)
     // let fragment = document.createDocumentFragment()
 
-    function onlyPaintGap() {
-      if (total < 0) {
-        requestAnimationFrame(() => {
-          console.log('real paint end', new Date() - startTIme)
-        }, 0)
-        return
+    for (let index = 0; index < total; index++) {
+      let element = document.createElement('div')
+      element.classList.add('item')
+      element.innerText = `这是第${index}个`
+      for (let j = 0; j < 3; j++) {
+        element.appendChild(document.createElement('span'))
       }
-      let fragment = document.createDocumentFragment()
-      for (let i = 0; i < gap; i++) {
-        let element = document.createElement('div')
-        element.classList.add('item')
-        element.innerText = `这是第${total--}个`
-        for (let j = 0; j < 3; j++) {
-          element.appendChild(document.createElement('span'))
-        }
-        fragment.appendChild(element)
-      }
-      app.appendChild(fragment)
-      requestAnimationFrame(onlyPaintGap)
+      app.appendChild(element)
     }
-
-    // while (total > 0) {
-    // total -= gap
-    // setTimeout(() => {
-    //   onlyPaintGap()
-    // })
-    requestAnimationFrame(onlyPaintGap)
-    // onlyPaintGap()
-    // }
     // app.appendChild(fragment)
     console.log('js end: ', new Date() - startTIme)
     setTimeout(() => {
