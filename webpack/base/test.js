@@ -1,11 +1,11 @@
 import '@/test.css'
 import '@/w3c.css'
 
-import img3 from './img/face/hanyan.png'
-import img4 from './img/face/liulei.png'
+import img3 from '../../img/face/hanyan.png'
+import img4 from '../../img/face/liulei.png'
 import('./test3') // 动态加载
 import('./w3c2') // 动态加载
-
+console.log(img3, img4)
 import x from './w3c'
 // import _ from 'loadsh'
 console.log(x)
@@ -16,8 +16,6 @@ let pro = new Promise((resolve, reject) => {
   resolve('p1p1s')
 })
 console.log(base, arrow, pro)
-xx(img3)
-yy(img4)
 // dd()
 console.log('热加载1111233332444')
 // import $ from 'jquery'

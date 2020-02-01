@@ -1,0 +1,38 @@
+.container {
+  height: 5000px;
+  /* background: linear-gradient(#f5f6f7, pink); */
+
+  background: yellow;
+  transition: 1s ease;
+  animation: 2s cubic-bezier(0, 0.5, 0.5, 1);
+}
+
+.back {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 56px;
+  line-height: 56px;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #c0c0c0;
+}
+
+.gallery {
+  display: flex;
+}
+
+img {
+  flex: 1;
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+}
+
+img:nth-child(1) {
+  background-image: url(../..//img/meizi/girl1.jpg);
+}
+
+img:nth-child(2) {
+  background-image: url(../../img/meizi/girl2.jpg);
+}

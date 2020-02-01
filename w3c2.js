@@ -2,11 +2,11 @@ export function con() {
   console.log('from script : ', document.getElementById('content'))
 }
 
-export function bb() {
+export function bb2() {
   console.log('+++++bbb')
 }
 
-export function cc() {
+export function cc2() {
   console.log('+++++ccc')
 }
 
@@ -18,7 +18,7 @@ con()
 
 export default {
   dd,
-  cc,
-  bb,
+  cc2,
+  bb2,
   con
 }
