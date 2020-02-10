@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Canvas</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /* background: linear-gradient(to bottom, red 0%, yellow 50%, blue 100%); */
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vh;
+    }
+
+    canvas {
+      border: 1px solid pink;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <canvas width="600" height="600"></canvas>
+    </div>
+  </body>
+  <script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+    const cwidth = canvas.clientWidth
+    const cheight = canvas.clientHeight
+
+    draw()
+
+    function draw() {
+      ctx.clearRect(0, 0, cwidth, cheight)
+      ctx.fillRect(0, 0, cwidth, cheight)
+      ctx.save()
+
+      // draw sun
+      ctx.translate(cwidth / 2, cheight / 2)
+      drwaPlanet(ctx, 0, 30, null, '#FFFDE7', '#FFF9C4')
+
+      //draw earth
+      const degEarth = ((new Date().getTime() / 60000) % 1) * Math.PI * 2 //%1 太多时角度失效
+      ctx.rotate(degEarth)
+      drwaPlanet(ctx, 150, 15, '#F9FBE7', '#B3E5FC', '#4FC3F7')
+
+      // draw moon
+      const degMoon = ((new Date().getTime() / 6000) % 1) * Math.PI * 2
+      ctx.translate(150, 0)
+      ctx.rotate(degMoon)
+      drwaPlanet(ctx, 60, 10, 'rgb(100, 100 , 100)', '#FAFAFA', '#EEEEEE')
+
+      ctx.restore()
+
+      requestAnimationFrame(draw)
+    }
+
+    function drwaPlanet(ctx, x, r, trackColor, color1, color2) {
+      if (trackColor) {
+        ctx.beginPath()
+        ctx.strokeStyle = trackColor
+        ctx.arc(0, 0, x, 0, Math.PI * 2)
+        ctx.stroke()
+      }
+
+      ctx.beginPath()
+      const gradient = ctx.createRadialGradient(x, 0, 0, x, 0, r)
+      gradient.addColorStop(0, color1)
+      gradient.addColorStop(1, color2)
+      ctx.fillStyle = gradient
+      ctx.arc(x, 0, r, 0, Math.PI * 2, false)
+      ctx.fill()
+    }
+  </script>
+</html>

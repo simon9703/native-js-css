@@ -4,15 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <!-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script> -->
+    <title>Canvas</title>
   </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /* background: linear-gradient(to bottom, red 0%, yellow 50%, blue 100%); */
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vh;
+    }
+
+    canvas {
+      border: 1px solid pink;
+    }
+  </style>
   <body>
-    <div css-module="gallery">
-      <img />
-      <img />
+    <div class="container">
+      <canvas width="600" height="600"></canvas>
     </div>
-    <div class="container"></div>
-    <div class="back">Top</div>
   </body>
+  <script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+    const cwidth = canvas.clientWidth
+    const cheight = canvas.clientHeight
+
+    ctx.fillRect(0, 0, cwidth, cheight)
+    ctx.beginPath()
+    ctx.fillStyle = 'yellow'
+    ctx.shadowColor = 'yellow'
+    ctx.shadowOffsetX = 5
+    ctx.shadowBlur = 10
+    ctx.arc(200, 200, 40, 0, Math.PI * 2)
+    ctx.fill()
+  </script>
 </html>

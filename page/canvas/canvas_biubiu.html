@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./page/base/common.js"></script>
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      border: 1px solid pink;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <canvas></canvas>
+    </div>
+  </body>
+
+  <script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+    const cwidth = window.innerWidth
+    const cheight = window.innerHeight
+    createCanvas(canvas, ctx, cwidth, cheight)
+
+    function measureDistance(sx, sy, tx, ty) {
+      return Math.sqrt(Math.pow(tx - sx, 2) + Math.pow(ty - sy, 2))
+    }
+    // =================================
+    class Radiation {
+      // 射线
+      constructor(sx, sy, tx, ty) {
+        // 开始坐标
+        this.sx = sx
+        this.sy = sy
+        // 结束坐标
+        this.tx = tx
+        this.ty = ty
+        // 当前坐标
+        this.cx = sx
+        this.cy = sy
+        // 线段起点坐标
+        this.bx = sx
+        this.by = sy
+
+        this.angle = Math.atan2(ty - sy, tx - sx) // 射线角度
+        this.speed = 2 // 速度
+        this.accelerate = 1.03 // 加速度
+        this.arrived = false // 运行结束
+
+        this.points = new Array(5) // 线段长度相差N个点
+      }
+
+      update() {
+        if (this.arrived) return // 动画完成
+
+        // 达到终点后，停止。
+        if (this.cx === this.tx && this.cy === this.ty) {
+          this.arrived = true
+          return
+        }
+
+        // 计算前N个点坐标
+        let before = this.points.shift()
+        if (before) {
+          this.bx = before.x
+          this.by = before.y
+        } else {
+          this.bx = this.sx
+          this.by = this.sy
+        }
+
+        // 计算当前坐标
+        this.speed = this.speed * this.accelerate
+        this.cx = this.cx + this.speed * Math.cos(this.angle)
+        this.cy = this.cy + this.speed * Math.sin(this.angle)
+        if (measureDistance(this.sx, this.sy, this.cx, this.cy) > measureDistance(this.sx, this.sy, this.tx, this.ty)) {
+          this.cx = this.tx
+          this.cy = this.ty
+        }
+        this.points.push({ x: this.cx, y: this.cy })
+      }
+
+      draw() {
+        if (this.arrived) return // 动画完成
+        ctx.save()
+        ctx.beginPath()
+        ctx.strokeStyle = randomColor()
+        ctx.lineCap = 'round'
+        ctx.moveTo(this.bx, this.by)
+        ctx.lineTo(this.cx, this.cy)
+        ctx.stroke()
+        ctx.restore()
+      }
+
+      render() {
+        this.update()
+        this.draw()
+      }
+    }
+
+    class Doughnut {
+      // 圈圈
+      constructor(x, y) {
+        this.x = x
+        this.y = y
+        this.r = 1
+
+        this.gap = 0.3 // 半径间隔
+        this.threshold = 5 // 阈值
+      }
+
+      update() {
+        if (this.r > this.threshold) {
+          this.r = 1
+        } else {
+          this.r += this.gap
+        }
+      }
+
+      draw() {
+        ctx.beginPath()
+        ctx.strokeStyle = randomColor()
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2)
+        ctx.stroke()
+      }
+
+      render() {
+        this.update()
+        this.draw()
+      }
+    }
+
+    class Scatter {
+      // 散花
+      constructor(x, y, angle, speed) {
+        //初始位置
+        this.sx = x
+        this.sy = y
+        // 当前位置
+        this.cx = x
+        this.cy = y
+        // 之前位置
+        this.bx = x
+        this.by = y
+
+        this.angle = angle // 散开角度
+        this.speed = { x: speed * Math.cos(this.angle), y: speed * Math.sin(this.angle) } // 初始速度
+        this.accelerate = 0.98 // 散开后减速
+        this.gravity = 0.05 // 重力加速度
+        this.alpha = 1
+        this.gradient = 0.05 // 透明度递减值
+        this.count = 0
+        this.threshold = 100 // 动画次数
+        this.arrived = false
+
+        this.points = new Array(2) // 以线条散开
+      }
+
+      update() {
+        if (this.arrived) return // 动画完成
+
+        if (this.alpha < 0) {
+          this.arrived = true
+          return
+        }
+
+        // 计算前N个点坐标
+        let before = this.points.shift()
+        if (before) {
+          this.bx = before.x
+          this.by = before.y
+        } else {
+          this.bx = this.cx
+          this.by = this.cy
+        }
+
+        // 结束时渐变至透明
+        if (this.count >= this.threshold * 0.9) {
+          this.alpha -= this.gradient
+        }
+
+        // 计算当前点的坐标
+        if (this.count < this.threshold) {
+          this.speed.x *= this.accelerate
+          this.speed.y = (this.speed.y + this.gravity) * this.accelerate
+          this.cx += this.speed.x
+          this.cy += this.speed.y
+          this.points.push({ x: this.cx, y: this.cy })
+          this.count++
+        }
+      }
+
+      draw() {
+        if (this.arrived) return
+        ctx.save()
+        ctx.beginPath()
+        ctx.strokeStyle = randomColor(this.alpha)
+        ctx.lineCap = 'round' // before和current坐标相同时，显示圆点。
+        ctx.moveTo(this.bx, this.by)
+        ctx.lineTo(this.cx, this.cy)
+        ctx.stroke()
+        ctx.restore()
+      }
+
+      render() {
+        this.update()
+        this.draw()
+      }
+
+      // 创造多个散开点
+      static createScatter(x, y, n = 1) {
+        let angle, speed
+        let scaters = []
+        for (let i = 0; i < n; i++) {
+          angle = Math.random() * Math.PI * 2 // ==> 向四周等概率发散。
+          speed = Math.random() * 6 + 2
+          scaters.push(new Scatter(x, y, angle, speed))
+        }
+        return scaters
+      }
+    }
+
+    class Animate {
+      // 操作动画
+      constructor() {
+        this.collections = [] // 射线 + 圆圈 集合
+        this.scatters = [] // 散点合集
+        this.count = 0
+        this.threshold = 30 // 新的节点添加时机
+      }
+
+      init() {
+        // 随机 起点和终点
+        let sx = random(cwidth)
+        let sy = cheight
+        let tx = random(cwidth)
+        let ty = random(cheight / 2)
+
+        let doughnut = new Doughnut(tx, ty)
+        let radiation = new Radiation(sx, sy, tx, ty)
+        this.collections.push({
+          radiation,
+          doughnut
+        })
+      }
+
+      animate() {
+        this.count++ // 计数
+        if (this.count % this.threshold === 0) {
+          // 添加新的节点
+          this.init()
+        }
+
+        ctx.clearRect(0, 0, cwidth, cheight)
+        ctx.fillStyle = 'rgba(0,0,0,0.95)' // 场景颜色
+        ctx.fillRect(0, 0, cwidth, cheight)
+
+        for (let index = 0; index < this.collections.length; index++) {
+          let { radiation, doughnut } = this.collections[index]
+          radiation.render()
+          doughnut.render()
+
+          if (radiation.arrived) {
+            // 添加散花
+            console.log(this.collections.length, this.scatters.length)
+            this.collections.splice(index--, 1) // 射线到达终点后，从集合中移除，方便回收
+            this.scatters.push(...Scatter.createScatter(radiation.tx, radiation.ty, 40)) // 添加散花
+          }
+        }
+
+        for (let index = 0; index < this.scatters.length; index++) {
+          let scatter = this.scatters[index]
+          scatter.render()
+          if (scatter.arrived) {
+            this.scatters.splice(index--, 1)
+          }
+        }
+
+        requestAnimationFrame(this.animate.bind(this))
+      }
+    }
+
+    let ani = new Animate()
+    ani.animate()
+  </script>
+</html>

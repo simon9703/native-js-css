@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Canvas</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      /* display: flex; */
+      /* justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vh; */
+    }
+
+    canvas {
+      border: 1px solid pink;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <canvas></canvas>
+    </div>
+  </body>
+  <script>
+    // 随机数：一个参数:0 ~ n; 连个参数 n ~ m
+    function random(start = 0, end = 0) {
+      let gap
+      if (end === 0) {
+        gap = start
+        start = 0
+      } else {
+        gap = end - start
+      }
+      return Math.floor(Math.random() * (gap + 1)) + start
+    }
+
+    class Planet {
+      // 星球基类
+      constructor(x, y, r, during, color1 = 'white', color2 = 'yellow') {
+        this.x = x // 公转半径
+        this.y = y
+        this.r = r // 天体半径
+        this.during = during // 公转周期
+        this.angle = 0 // 开始角度
+        this.color1 = color1
+        this.color2 = color2
+      }
+
+      update() {
+        this.angle = ((new Date().getTime() / (this.during * 1000)) % 1) * Math.PI * 2 //%1 太多时角度失效
+      }
+
+      draw() {
+        ctx.save()
+        // 绘制轨道
+        ctx.beginPath()
+        ctx.strokeStyle = this.color1
+        ctx.arc(0, 0, this.x, 0, Math.PI * 2)
+        ctx.stroke()
+
+        // 绘制天体 + 变化位置
+        ctx.beginPath()
+        ctx.rotate(this.angle)
+        ctx.fillStyle = this.color2
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.restore()
+      }
+    }
+
+    // 行星环
+    class Asteroid {
+      constructor(x, inception, r, during, color1 = 'rgba(255,255,255, 0.6)') {
+        this.x = x // 公转半径
+        this.inception = inception // 开始角度
+        this.r = r // 天体半径
+        this.during = during // 公转周期
+        this.angle = 0 // 开始角度
+        this.color1 = color1
+      }
+
+      update() {
+        this.angle = this.inception + ((new Date().getTime() / (this.during * 1000)) % 1) * Math.PI * 2 //%1 太多时角度失效
+      }
+
+      draw() {
+        ctx.save()
+        ctx.globalCompositeOperation = 'xor'
+
+        ctx.beginPath()
+        ctx.rotate(this.angle)
+        ctx.fillStyle = this.color1
+        ctx.arc(this.x, 0, this.r, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.restore()
+      }
+
+      static createAsteroids() {
+        let x, inception, r, during
+        let asteroids = []
+        for (let i = 0; i < 200; i++) {
+          x = random(1, 3) * 20 + 300
+          inception = random(Math.PI * 2)
+          r = random(1, 8)
+          during = random(20, 500)
+          asteroids.push(new Asteroid(x, inception, r, during))
+        }
+        return asteroids
+      }
+    }
+
+    // 彗星
+    class Comet {
+      constructor(x, inception, a, b, r, reverse, during, color1 = 'rgba(255,255,255,0.3)', color2 = 'yellow') {
+        this.x = x // 轨道偏移
+        this.inception = inception // 初始位置
+        this.a = a // 公转半径
+        this.b = b
+        this.r = r // 天体半径
+        this.reverse = reverse // 椭圆轨道旋转距离
+        this.during = during // 公转周期
+        this.angle = 0 // 开始角度
+        this.color1 = color1
+        this.color2 = color2
+      }
+
+      update() {
+        // 椭圆参数方程: x = a * cos(angle), y = b * sin(angle)
+        this.angle = this.inception + ((new Date().getTime() / (this.during * 1000)) % 1) * Math.PI * 2 //%1 太多时角度失效
+      }
+
+      draw() {
+        ctx.save()
+        ctx.rotate(this.reverse)
+        ctx.translate(this.x, 0)
+        // 绘制轨道
+        ctx.beginPath()
+        ctx.strokeStyle = this.color1
+        ctx.ellipse(0, 0, this.a, this.b, 0, 0, Math.PI * 2)
+        ctx.stroke()
+
+        // 绘制天体 + 变化位置
+        ctx.beginPath()
+        ctx.fillStyle = this.color2
+        ctx.shadowColor = this.color2
+        ctx.globalCompositeOperation = 'source-atop'
+        ctx.shadowBlur = 1
+        // ctx.shadowOffsetX = 2
+        ctx.arc(this.a * Math.cos(this.angle), this.b * Math.sin(this.angle), this.r, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.restore()
+      }
+
+      static createComets() {
+        let x, inception, a, b, r, reverse, during
+        let comets = []
+        for (let i = 0; i < 20; i++) {
+          x = random(100, 200)
+          inception = random(Math.PI * 2)
+          a = random(300, 600)
+          b = random(100, 300)
+          r = random(2, 4)
+          reverse = random(Math.PI * 2)
+          during = random(10, 40)
+          comets.push(new Comet(x, inception, a, b, r, reverse, during))
+        }
+        return comets
+      }
+    }
+
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const cwidth = window.innerWidth
+    const cheight = window.innerHeight
+    createCanvas(cwidth, cheight)
+
+    //初始化
+    ctx.translate(cwidth / 2, cheight / 2) //坐标轴移动到画布中央
+
+    let planets = []
+
+    let sun = new Planet(100, 0, 20, 36)
+    planets.push(sun, ...Comet.createComets(), ...Asteroid.createAsteroids())
+    animate()
+
+    //控制动画
+    function animate() {
+      // 初始化
+      ctx.clearRect(-cwidth / 2, -cheight / 2, cwidth, cheight)
+      ctx.fillStyle = 'rgba(0, 0, 0)' // 场景颜色
+      ctx.fillRect(-cwidth / 2, -cheight / 2, cwidth, cheight)
+      planets.forEach(item => {
+        item.update()
+        item.draw()
+      })
+      // const degEarth = ((new Date().getTime() / 60000) % 1) * Math.PI * 2 //%1 太多时角度失效
+      // drwaCircle(100, cheight / 2, 10, degEarth, 'black')
+      requestAnimationFrame(animate)
+    }
+
+    function drwaCircle(x, y, r, color) {
+      //绘制轨道 和 星球
+      ctx.beginPath()
+      // ctx.strokeStyle = color
+      ctx.arc(0, 0, x, 0, Math.PI * 2)
+      ctx.stroke()
+
+      ctx.beginPath()
+      ctx.arc(x * Math.cos(angle), x * Math.sin(angle), r, 0, Math.PI * 2)
+      ctx.fill()
+    }
+
+    function createCanvas(cwidth, cheight) {
+      // retina屏幕比例
+      window.devicePixelRatio || (window.devicePixelRatio = 1)
+      console.log('devicePixelRatio: ', window.devicePixelRatio)
+      canvas.style.width = cwidth + 'px' // css只是修改显示效果
+      canvas.style.height = cheight + 'px'
+      canvas.height = cheight * window.devicePixelRatio // 画布面积扩大
+      canvas.width = cwidth * window.devicePixelRatio
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio) // 画布尺寸比例增加，让画布1px --> 1 * devicePixelRatio px。最终计算不变
+    }
+  </script>
+</html>
