@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./page/base/common.js"></script>
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('./img/meizi/girl1.jpg');
+    }
+
+    canvas {
+      border: 1px solid pink;
+    }
+
+    button {
+      margin: 12px;
+    }
+  </style>
+  <body>
+    <div><button>下一帧</button></div>
+    <div class="container">
+      <canvas></canvas>
+    </div>
+  </body>
+
+  <script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+    const cwidth = window.innerWidth
+    const cheight = window.innerHeight
+    createCanvas(canvas, ctx, cwidth, cheight)
+
+    function measureDistance(sx, sy, tx, ty) {
+      return Math.sqrt(Math.pow(tx - sx, 2) + Math.pow(ty - sy, 2))
+    }
+
+    let beforeLocation = {
+      x: 0,
+      y: 300
+    }
+
+    let count = 0
+
+    ctx.fillStyle = 'black'
+    ctx.fillRect(0, 0, cwidth, cheight)
+
+    function draw() {
+      // ===全遮住
+      // ctx.fillStyle = 'rgba(255,255,255 ,0.2)'
+      // ctx.fillStyle = 'rgba(0,0,0 ,0.2)' // 2 * 1 / alpha 次后透明
+      // ctx.fillRect(0, 0, cwidth, cheight)
+
+      ctx.globalCompositeOperation = 'destion-out'
+      ctx.fillStyle = 'rgba(255,255,255 ,0.2)'
+      ctx.fillRect(0, 0, cwidth, cheight)
+
+      count++
+      console.log(count)
+      beforeLocation.x += 60
+      ctx.fillStyle = 'red'
+      ctx.fillRect(beforeLocation.x, beforeLocation.y, 300, 30)
+
+      // for (let i = 0, len = 200; i < len; i++) {
+      //   let alpha = (1 / len) * i
+      //   ctx.fillStyle = `rgba(255,0,0,${alpha})`
+      //   console.log(i, alpha)
+      //   ctx.fillRect(i * 5, 100, 3, 100)
+      //   // ctx.fillText(ctx.fillStyle, cwidth / 2 + 40, 100 + i * 15)
+      // }
+
+      // ctx.strokeRect(beforeLocation.x, beforeLocation.y, 50, 30)
+      // requestAnimationFrame(draw)
+    }
+
+    document.querySelector('button').addEventListener('click', draw)
+  </script>
+</html>

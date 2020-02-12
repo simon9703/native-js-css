@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="./page/base/common.js"></script>
+    <script src="../base/common.js"></script>
     <title>Document</title>
   </head>
   <style>
@@ -24,6 +24,12 @@
   </body>
 
   <script>
+    /**
+     * 1. 来源: https://codepen.io/starriness/pen/XBJXGv?editors=0010&__cf_chl_jschl_tk__=645e6ef13c4ba360b83a92d2861c9161a100edfd-1581141403-0-AcZMAM42eupMHBwGJ3OSRX4hNtAX6aK7gaIVLQJlNMkpUXJV03MyKXyDuf5iWEK4vserjpV_phgKkF6yBMF9XKtspw_Jubo4xp7fRCxhKZiXpARM6Y-vAkYs0NZTfJ89YJGhQJE2sf1ne3y1F1Us6R9TbOg2IlL3WPsy9OZPTql-lnKdQU3unBVNF1CYBEpPfIzoq70JH8JWE3PiztQWDulrrlzQtgBPcSN6ZWcKP1pWbO9H0VPELMDQrOcMzzgVR9vmQAw_vwRfLVeXqn4aLDv4x2lp8B6whllxuDoALXaPjgECfOKm3NLVCynVdgAfaZySkR74Zs9p37nmAKx2zDvLQE_UFVlSsq1EzNmUvnTv6jQg_YpvVmILLIRIOO1XFQ
+     * 2. 多个对象 由 Animate 统一控制，分离职责。
+     * 3.
+     */
+
     const canvas = document.querySelector('canvas')
     const ctx = canvas.getContext('2d')
     const cwidth = window.innerWidth
@@ -259,8 +265,8 @@
           this.init()
         }
 
-        ctx.clearRect(0, 0, cwidth, cheight)
-        ctx.fillStyle = 'rgba(0,0,0,0.95)' // 场景颜色
+        // ctx.clearRect(0, 0, cwidth, cheight)
+        ctx.fillStyle = 'rgba(0,0,0,0.2)' // 场景颜色
         ctx.fillRect(0, 0, cwidth, cheight)
 
         for (let index = 0; index < this.collections.length; index++) {
@@ -270,8 +276,7 @@
 
           if (radiation.arrived) {
             // 添加散花
-            console.log(this.collections.length, this.scatters.length)
-            this.collections.splice(index--, 1) // 射线到达终点后，从集合中移除，方便回收
+            this.collections.splice(index--, 1) // 射线到达终点后，从集合中移除，方便回收。
             this.scatters.push(...Scatter.createScatter(radiation.tx, radiation.ty, 40)) // 添加散花
           }
         }
