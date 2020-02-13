@@ -5,103 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="./page/base/common.js"></script>
-
-    <title>Canvas</title>
+    <title>Document</title>
   </head>
   <style>
     body {
       margin: 0;
       padding: 0;
-      /* background: linear-gradient(to bottom, red 0%, yellow 50%, blue 100%); */
+      background: yellow;
     }
 
-    .gallery {
-      width: 320px;
-      padding: 8px 0;
-    }
-
-    .container canvas {
-      border: 1px solid pink;
-    }
-
-    .main {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding-top: 32px;
-    }
-
-    .gallery {
-      flex: 0;
-    }
-
-    .container {
-      flex: 0;
-    }
-
-    img {
-      display: inline-block;
-      width: 300px;
-      height: 300px;
+    canvas {
       border: 1px solid pink;
     }
   </style>
   <body>
-    <div class="main">
-      <div class="gallery">
-        <img id="source" src="./img/desk/03.jpg" alt="" />
-        <img id="destination" src="./img/desk/02.jpg" alt="" />
-
-        <!-- <canvas id="source" width="300" height="300"></canvas> -->
-      </div>
-      <div class="container">
-        <canvas id="main" width="600" height="600"></canvas>
-      </div>
+    <div class="container">
+      <canvas></canvas>
     </div>
   </body>
+
   <script>
-    const source = document.querySelectorAll('img')[0]
-    const destination = document.querySelectorAll('img')[1]
-
-    window.onload = () => {
-      let cv = document.createElement('canvas')
-      cv.width = crwidth
-      cv.height = crheight
-      // debugger
-      let cx = cv.getContext('2d')
-      cx.drawImage(source, 0, 0, crwidth, crheight)
-      let imgData1 = cx.getImageData(0, 0, crwidth, crheight)
-      ctx.clearRect(0, 0, crwidth, crheight)
-
-      cx.drawImage(destination, 0, 0, crwidth, crheight)
-      let imgData2 = cx.getImageData(0, 0, crwidth, crheight)
-      let data1 = imgData1.data,
-        data2 = imgData2.data
-
-      for (let i = 0, len = data1.length, avg = 0; i < len; i += 4) {
-        avg = (data1[i] + data1[i + 1] + data1[i + 2]) / 6
-        data2[i] = data1[i] | data2[i]
-        data2[i + 1] = data1[i + 1] & data2[i + 1]
-        data2[i + 2] = data1[i + 2] | data2[i + 2]
-        // data[i + 3] = 0
-      }
-      ctx.putImageData(imgData2, 0, 0)
-    }
-
-    // ======= 初始化
     const canvas = document.querySelector('canvas')
     const ctx = canvas.getContext('2d')
-    const cwidth = 600
-    const cheight = 600
+    const cwidth = window.innerWidth
+    const cheight = window.innerHeight
     createCanvas(canvas, ctx, cwidth, cheight)
-    // x retina后的真实像素大小
-    let crwidth = cwidth * 1.25
-    let crheight = cheight * 1.25
-
-    img = new Image()
-    img.src = './img/desk/03.jpg'
-    img.onload = function() {
-      ctx.drawImage(img, 0, 0, cwidth, cheight)
-    }
   </script>
 </html>

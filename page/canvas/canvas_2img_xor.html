@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="./page/base/common.js"></script>
+    <script src="../base/common.js"></script>
 
     <title>Canvas</title>
   </head>
@@ -49,8 +49,8 @@
   <body>
     <div class="main">
       <div class="gallery">
-        <img id="source" src="./img/desk/03.jpg" alt="" />
-        <img id="destination" src="./img/desk/02.jpg" alt="" />
+        <img id="source" src="../../img/desk/03.jpg" alt="" />
+        <img id="destination" src="../../img/desk/02.jpg" alt="" />
 
         <!-- <canvas id="source" width="300" height="300"></canvas> -->
       </div>
@@ -97,11 +97,5 @@
     // x retina后的真实像素大小
     let crwidth = cwidth * 1.25
     let crheight = cheight * 1.25
-
-    img = new Image()
-    img.src = './img/desk/03.jpg'
-    img.onload = function() {
-      ctx.drawImage(img, 0, 0, cwidth, cheight)
-    }
   </script>
 </html>

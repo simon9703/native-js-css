@@ -11,19 +11,31 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('./img/meizi/girl1.jpg');
+      background: yellow;
     }
 
     canvas {
+      background: url('./img/desk/night.png');
+      background-size: 100% 100%;
       border: 1px solid pink;
     }
 
     button {
       margin: 12px;
     }
+
+    .black {
+      padding: 8px 12px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .white {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.5);
+    }
   </style>
   <body>
-    <div><button>下一帧</button></div>
+    <div><button>下一帧</button> <span class="black">black</span> <span class="white">white</span></div>
     <div class="container">
       <canvas></canvas>
     </div>
@@ -47,35 +59,26 @@
 
     let count = 0
 
-    ctx.fillStyle = 'black'
-    ctx.fillRect(0, 0, cwidth, cheight)
+    // ctx.fillStyle = 'black'
+    // ctx.fillRect(0, 0, cwidth, cheight)
 
     function draw() {
-      // ===全遮住
+      //  ===全遮住
       // ctx.fillStyle = 'rgba(255,255,255 ,0.2)'
       // ctx.fillStyle = 'rgba(0,0,0 ,0.2)' // 2 * 1 / alpha 次后透明
       // ctx.fillRect(0, 0, cwidth, cheight)
 
-      ctx.globalCompositeOperation = 'destion-out'
-      ctx.fillStyle = 'rgba(255,255,255 ,0.2)'
+      ctx.save()
+      ctx.globalCompositeOperation = 'destination-in'
+      ctx.fillStyle = 'rgba(0,0,0 ,0.2)'
       ctx.fillRect(0, 0, cwidth, cheight)
+      ctx.restore()
 
       count++
       console.log(count)
       beforeLocation.x += 60
       ctx.fillStyle = 'red'
       ctx.fillRect(beforeLocation.x, beforeLocation.y, 300, 30)
-
-      // for (let i = 0, len = 200; i < len; i++) {
-      //   let alpha = (1 / len) * i
-      //   ctx.fillStyle = `rgba(255,0,0,${alpha})`
-      //   console.log(i, alpha)
-      //   ctx.fillRect(i * 5, 100, 3, 100)
-      //   // ctx.fillText(ctx.fillStyle, cwidth / 2 + 40, 100 + i * 15)
-      // }
-
-      // ctx.strokeRect(beforeLocation.x, beforeLocation.y, 50, 30)
-      // requestAnimationFrame(draw)
     }
 
     document.querySelector('button').addEventListener('click', draw)
