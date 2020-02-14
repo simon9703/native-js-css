@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="../base/common.js"></script>
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      background: url('../../img/desk/night.png');
+      background-size: 100% 100%;
+      border: 1px solid pink;
+    }
+
+    button {
+      margin: 12px;
+    }
+
+    .black {
+      padding: 8px 12px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .white {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.5);
+    }
+  </style>
+  <body>
+    <div class="container">
+      <canvas></canvas>
+    </div>
+  </body>
+
+  <script>
+    /**
+     * 1. 来源：https://segmentfault.com/a/1190000008664249
+     * 2. 彗星尾动画实验。
+     */
+
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+    const cwidth = window.innerWidth
+    const cheight = window.innerHeight
+    createCanvas(canvas, ctx, cwidth, cheight)
+
+    function measureDistance(sx, sy, tx, ty) {
+      return Math.sqrt(Math.pow(tx - sx, 2) + Math.pow(ty - sy, 2))
+    }
+
+    class ShootStar {
+      constructor(x, y, angle) {
+        this.x = x
+        this.y = y
+        this.angle = angle
+        this.speed = 2
+        this.width = 5
+        this.xGap = this.width * Math.cos(this.angle)
+        this.yGap = this.width * Math.sin(this.angle)
+      }
+
+      update() {
+        this.x += this.speed * Math.cos(this.angle)
+        this.y += this.speed * Math.sin(this.angle)
+      }
+
+      draw() {
+        ctx.save()
+        ctx.lineWidth = 3
+        ctx.lineCap = 'round'
+        ctx.strokeStyle = 'white'
+        ctx.beginPath()
+        ctx.moveTo(this.x, this.y)
+        ctx.lineTo(this.x + this.xGap, this.y + this.yGap)
+        ctx.stroke()
+        ctx.restore()
+      }
+
+      render() {
+        this.update()
+        this.draw()
+      }
+
+      static createShootStar() {
+        let angle = Math.PI / 4
+        let x = random(cwidth * 2) - cwidth
+        let y = 0
+        return new ShootStar(x, y, angle)
+      }
+    }
+
+    function Animation() {
+      let collcections = []
+      let count = 0
+      function run() {
+        count++
+        if (count % 30 === 0) {
+          collcections.push(ShootStar.createShootStar())
+        }
+        ctx.save()
+        ctx.globalCompositeOperation = 'destination-in'
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'
+        ctx.fillRect(0, 0, cwidth, cheight)
+        ctx.restore()
+        collcections.forEach(item => {
+          item.render()
+        })
+        requestAnimationFrame(run)
+      }
+      return run
+    }
+
+    new Animation()()
+  </script>
+</html>

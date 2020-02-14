@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="./page/base/common.js"></script>
+    <script src="../base/common.js"></script>
     <title>Document</title>
   </head>
   <style>
@@ -45,6 +45,10 @@
   </body>
 
   <script>
+    /**
+     * 1. globalCompositeOperation 图像混合测试。
+     */
+
     const canvas = document.querySelector('canvas')
     const ctx = canvas.getContext('2d')
     const cwidth = window.innerWidth
@@ -61,7 +65,8 @@
       ctx.globalCompositeOperation = type
       ctx.fillStyle = 'rgba(0,0,255,0.2)'
       ctx.beginPath()
-      ctx.arc(300, 300, 120, 0, Math.PI * 2)
+      // ctx.arc(300, 300, 120, 0, Math.PI * 2)
+      ctx.arc(0, 0, 500, 0, Math.PI * 2)
       ctx.fill()
       ctx.restore()
 
