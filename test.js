@@ -1,10 +1,166 @@
-let a = ['s', 's']
-
-let arr = [1, 2, 3, 4, 4, 5]
-arr.forEach((item, index, arr) => {
-  console.log(item)
-  if (item % 2 === 0) {
-    arr.splice(index, 1)
+'use strict'
+var canvas = {},
+  image = {},
+  requestId = 0,
+  startTime = 0
+function Particles(c) {
+  var a = this
+  var b = c.ease || 'easeInOutExpo'
+  if (typeof window[b] !== 'function') {
+    console.log('the function is not existed, it will use easeInOutExpo instead')
+    b = 'easeInOutExpo'
   }
-})
-console.log('final:', arr)
+  this.init = (function() {
+    if (!c.canvasId || !document.getElementById(c.canvasId)) {
+      console.log('pls use the correct canvas id')
+      return
+    }
+    if (!c.imgUrl) {
+      console.log('pls use the correct img url')
+      return
+    }
+    canvas.self = document.getElementById(c.canvasId)
+    if (canvas.self.getContext) {
+      canvas.w = canvas.self.width
+      canvas.h = canvas.self.height
+      canvas.ctx = canvas.self.getContext('2d')
+      var d = new Image()
+      image.isLoaded = false
+      d.onload = function() {
+        image.self = d
+        image.w = d.width
+        image.h = d.height
+        image.x = c.imgX || parseInt(canvas.w / 2 - image.w / 2)
+        image.y = c.imgY || 0
+        canvas.ctx.drawImage(image.self, image.x, image.y, image.w, image.h)
+        image.imgData = canvas.ctx.getImageData(image.x, image.y, image.w, image.h)
+        canvas.ctx.clearRect(0, 0, canvas.w, canvas.h)
+        Particles.prototype._calculate({
+          color: c.fillStyle || 'rgba(26,145,211,1)',
+          pOffset: c.particleOffset || 2,
+          startX: c.startX || image.x + image.w / 2,
+          startY: c.startY || 0,
+          duration: c.duration || 3000,
+          interval: c.interval || 3,
+          ease: b,
+          ratioX: c.ratioX || 1,
+          ratioY: c.ratioY || 1,
+          cols: c.cols || 100,
+          rows: c.rows || 100
+        })
+        image.isLoaded = true
+        startTime = new Date().getTime()
+      }
+      d.crossOrigin = 'anonymous'
+      d.src = c.imgUrl
+    }
+  })()
+  this.draw = function() {
+    if (image.isLoaded) {
+      Particles.prototype._draw()
+    } else {
+      setTimeout(a.draw)
+    }
+  }
+  this.animate = function() {
+    if (image.isLoaded) {
+      Particles.prototype._animate(c.delay)
+    } else {
+      setTimeout(a.animate)
+    }
+  }
+}
+Particles.prototype = {
+  array: [],
+  _calculate: function(a) {
+    var h = image.imgData.length
+    var f = image.imgData.data
+    var l = a.cols,
+      n = a.rows
+    var m = parseInt(image.w / l),
+      c = parseInt(image.h / n)
+    var g, e
+    var k = 0
+    for (var d = 0; d < l; d++) {
+      for (var b = 0; b < n; b++) {
+        k = (b * c * image.w + d * m) * 4
+        if (f[k] <= 10) {
+          this.array.push({
+            x0: a.startX,
+            y0: a.startY,
+            x1: image.x + d * m + (Math.random() - 0.5) * 10 * a.pOffset,
+            y1: image.y + b * c + (Math.random() - 0.5) * 10 * a.pOffset,
+            fillStyle: a.color,
+            delay: b / 20,
+            currTime: 0,
+            count: 0,
+            duration: parseInt(a.duration / 16.66) + 1,
+            interval: parseInt(Math.random() * 10 * a.interval),
+            ease: a.ease,
+            ratioX: a.ratioX,
+            ratioY: a.ratioY
+          })
+        }
+      }
+    }
+  },
+  _draw: function() {
+    canvas.ctx.clearRect(0, 0, canvas.w, canvas.h)
+    var b = this.array.length
+    var a = null
+    for (var c = 0; c < b; c++) {
+      a = this.array[c]
+      canvas.ctx.fillStyle = a.fillStyle
+      canvas.ctx.fillRect(a.x1, a.y1, 1, 1)
+    }
+  },
+  _render: function() {
+    canvas.ctx.clearRect(0, 0, canvas.w, canvas.h)
+    var l = Particles.prototype.array
+    var f = l.length
+    var h = null
+    var d, a
+    var k = 0,
+      b = 0,
+      c = 0,
+      j = 1,
+      g = 1
+    for (var e = 0; e < f; e++) {
+      h = l[e]
+      if (h.count++ > h.delay) {
+        canvas.ctx.fillStyle = h.fillStyle
+        k = h.currTime
+        b = h.duration
+        c = h.interval
+        h.ratioX !== 1 ? (j = h.ratioX + Math.random() * 2) : 1
+        h.ratioY !== 1 ? (g = h.ratioY + Math.random() * 2) : 1
+        if (l[f - 1].duration + l[f - 1].interval < l[f - 1].currTime / 2) {
+          cancelAnimationFrame(requestId)
+          Particles.prototype._draw()
+          return
+        } else {
+          if (k < b + c) {
+            if (k >= c) {
+              d = window[h.ease]((k - c) * j, h.x0, (h.x1 - h.x0) * j, b)
+              a = window[h.ease]((k - c) * g, h.y0, (h.y1 - h.y0) * g, b)
+              canvas.ctx.fillRect(d, a, 1, 1)
+            }
+          } else {
+            canvas.ctx.fillRect(h.x1, h.y1, 1, 1)
+          }
+        }
+        h.currTime += Math.random() + 0.5
+      }
+    }
+    requestId = requestAnimationFrame(Particles.prototype._render)
+  },
+  _animate: function(a) {
+    if (startTime + a < new Date().getTime()) {
+      requestId = requestAnimationFrame(Particles.prototype._render)
+    } else {
+      setTimeout(function() {
+        Particles.prototype._animate(a)
+      })
+    }
+  }
+}

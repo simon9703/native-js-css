@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./page/base/common.js"></script>
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      border: 1px solid pink;
+    }
+
+    select {
+      position: fixed;
+      top: 150px;
+      right: 300px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <canvas></canvas>
+    </div>
+  </body>
+
+  <script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+    const cwidth = window.innerWidth
+    const cheight = window.innerHeight
+    createCanvas(canvas, ctx, cwidth, cheight)
+  </script>
+</html>
