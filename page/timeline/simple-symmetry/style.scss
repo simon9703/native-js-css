@@ -1,0 +1,136 @@
+$background: #90CAF9;
+$primary: #FF5252;
+$trans-time: .5s;
+
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1.3;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  padding-bottom: 50px; // 底部留白
+  width: 100%;
+  color: white;
+  background: $background;
+  overflow-x: hidden;
+}
+
+.title {
+  padding: 100px 0;
+  background: #FF5252;
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+.timeline {
+  padding: 50px 0; //时间轴留白
+  overflow-x: hidden; //防止过宽时x轴滚动。
+
+  &-item {
+    position: relative;
+    margin: 0 auto;
+    padding-top: 50px;
+    width: 6px;  // 轴线宽度。     父布局只展示时间轴的线。子布局以visibility: visible显示（不占用空间）。
+    background: white;
+
+    &::after { //圆点
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      content: '';
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: $primary;
+      transform: translateX(-50%); //节点居中
+    }
+
+    &:nth-child(odd) div{//奇数布局
+      left: -400px - 50px - 6px; //左移 --> 自生宽度 + 到轴线距离 + 轴线宽度
+
+      &::after {
+        right: -16px;
+        border-width: 8px 0  8px 16px;
+        border-color: transparent transparent transparent $primary;
+      }
+    }
+
+    &:nth-child(even) div{//偶数布局
+      left: 50px; //到轴线距离
+
+      &::after {
+        left: -16px;
+        border-width: 8px 16px 8px 0;
+        border-color: transparent $primary transparent transparent;
+      }
+    }
+  }
+
+  &-content{ //基础布局
+    position: relative;
+    bottom: 0;
+    padding: 16px;
+    width: 400px;
+    background: $primary;
+
+    &::after { // 三角形
+      position: absolute;
+      bottom: 7px;
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    h5 {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+/* effect */
+.timeline-item::after { // 圆点过渡
+    transition: $trans-time ease-in-out;
+    background: white;
+}
+
+.timeline-content { // div 平移 + 显示过渡
+  opacity: 0;
+  visibility: hidden;
+  transition: $trans-time ease-in-out;
+}
+
+.timeline-item:nth-child(odd){
+
+  .timeline-content {
+     transform: translateX(-200px);
+  }
+}
+
+.timeline-item:nth-child(even){
+  .timeline-content {
+    transform: translateX(200px);
+  }
+}
+
+.timeline .in-view { // 活跃状态
+  .timeline-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0px);
+  }
+
+  &::after {
+    background: $primary;
+  }
+}

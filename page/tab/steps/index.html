@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Title</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!--  https://codepen.io/ritz078/pen/LGRWjE/-->
+  </head>
+  <body>
+    <section class="container">
+      <div class="timeline"> <!--布局位置-->
+        <div class="wrapper">  <!--内容视口-->
+          <div class="content"> <!--全部内容-->
+            <ul>
+              <li data-width="3"><a href="javascript:void(0)">Au 11</a></li>
+              <li data-width="2"><a href="javascript:void(0)">Ja 03</a></li>
+              <li data-width="4"><a href="javascript:void(0)">Su 33</a></li>
+              <li data-width="2"><a href="javascript:void(0)">Da 27</a></li>
+              <li data-width="3"><a href="javascript:void(0)">Se 03</a></li>
+              <li data-width="2"><a href="javascript:void(0)">No 10</a></li>
+              <li data-width="5"><a href="javascript:void(0)">Vd 29</a></li>
+              <li data-width="2"><a href="javascript:void(0)">Ma 05</a></li>
+              <li data-width="4"><a href="javascript:void(0)">As 16</a></li>
+              <li data-width="2">
+                <a href="javascript:void(0)">Ew 12</a></li>
+              <li data-width="3"><a href="javascript:void(0)">Oi 08</a></li>
+              <li data-width="4"><a href="javascript:void(0)">Ju 18</a></li>
+              <li data-width="2"><a href="javascript:void(0)">Kr z3</a></li>
+            </ul>
+            <div class="base-line">
+              <div class="filling-line"></div>
+            </div>
+          </div>
+        </div>
+        <a class="back" href="javascript:void(0)" content="\f04a">←</a>
+        <a class="forward" href="javascript:void(0)" content="\f04e">→</a>
+      </div>
+    </section>
+
+  <section class="article">
+    <div class="article">1234</div>
+
+  </section>
+  </body>
+
+  <script>
+    let content = document.querySelector('.content')
+    let distance = 0;
+
+    document.querySelector('.back').addEventListener('click', function () {
+      distance += 100
+      content.style.transform = `translateX(${distance}px)`
+    })
+
+    document.querySelector('.forward').addEventListener('click', function () {
+      distance -= 100
+      content.style.transform = `translateX(${distance}px)`
+    })
+  </script>
+</html>

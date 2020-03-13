@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ripple</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="gallery">
+  <div class="mask"></div>
+  <div class="water"></div>
+
+</div>
+</body>
+
+<script>
+  let gallery = document.querySelector('.gallery')
+  let mask = document.querySelector('.mask')
+  let distance = 10 // 确认半径
+  // 坐标信息
+  let positions = [
+    {x: '0.15', y: '0.15', info: '1'},
+    {x: '0.86', y: '0.5', info: '2'},
+    {x: '0.44', y: '0.23', info: '3'},
+    {x: '0.60', y: '0.78', info: '4'},
+    {x: '0.33', y: '0.65', info: '5'},
+    {x: '0.74', y: '0.65', info: '6'},
+    {x: '0.65', y: '0.35', info: '7'},
+  ]
+
+  positions.forEach(item => { // 绘制随机坐标
+    let rect = document.createElement('div')
+    rect.classList.add('item')
+    rect.dataset.info = item.info
+    rect.style.left = item.x * gallery.offsetWidth + 'px'
+    rect.style.top = item.y * gallery.offsetHeight + 'px'
+    rect.innerText = item.info
+    gallery.append(rect)
+  })
+
+  mask.addEventListener('click', e => {
+    positions.some(item => {
+      let itemX = item.x * gallery.offsetWidth
+      let itemY = item.y * gallery.offsetHeight
+      // 存在在任意坐标 + 半径distance内的点。
+      let inner = Math.pow(itemX - e.offsetX, 2) + Math.pow(itemY - e.offsetY, 2)
+      if (inner < Math.pow(distance, 2)) {
+        alert(item.info)
+        return true
+      }
+      return false
+    })
+    // 水波纹
+    let node = document.querySelector('.water')
+    let water = node.cloneNode(true) // 深复制
+    water.style.left = `${e.offsetX - 2.5}px`  // -5居中
+    water.style.top = `${e.offsetY - 2.5}px`
+    water.classList.add('animate') // 添加动画类，只会增加一次。
+    node.parentNode.replaceChild(water, node) // 替换
+  })
+
+</script>
+</html>

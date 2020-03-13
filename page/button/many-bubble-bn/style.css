@@ -1,0 +1,35 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.btn {
+  position: relative;
+  padding: 1rem 2rem;
+  user-select: none;
+  cursor: pointer; }
+  .btn::before {
+    position: absolute;
+    display: block;
+    top: -50%;
+    left: -30%;
+    content: '';
+    width: 200px;
+    height: 50px;
+    background-image: radial-gradient(circle, #F06292 20%, transparent 20%), radial-gradient(circle, #F06292 20%, transparent 20%), radial-gradient(circle, transparent 20%, #F06292 20%, transparent 30%), radial-gradient(circle, #F06292 20%, transparent 20%), radial-gradient(circle, #F06292 20%, transparent 20%), radial-gradient(circle, #F06292 20%, transparent 20%), radial-gradient(circle, transparent 20%, #F06292 20%, transparent 30%), radial-gradient(circle, #F06292 20%, transparent 20%);
+    background-repeat: no-repeat;
+    background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 20% 20%, 20% 20%, 18% 18%;
+    background-position: 5% 90%, 10% 90%, 10% 90%, 20% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+    animation: topEscape 2s  2s ease-in-out forwards; }
+@keyframes topEscape {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 20% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%; }
+  50% {
+    background-position: 0 80%, 5% 80%, 0 80%, 10% 80%, 15% 80%, 50% 80%, 65% 80%, 80% 80%; }
+  100% {
+    background-position: 0 70%, 5% 70%, 0 70%, 10% 70%, 15% 70%, 50% 70%, 65% 70%, 80% 70%;
+    background-size: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; } }
+
+/*# sourceMappingURL=style.css.map */

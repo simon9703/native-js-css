@@ -1,0 +1,34 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f6f7; }
+
+.card {
+  position: relative;
+  width: 240px;
+  height: 180px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px #ddd;
+  background-color: white; }
+  .card .hint {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #212121;
+    cursor: pointer;
+    transition: .3s; }
+    .card .hint .hint-info {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 8px;
+      width: 8px;
+      background: white; }
+    .card .hint.show {
+      width: 280px;
+      height: 220px; }

@@ -1,0 +1,146 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.model {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+  //display: none;
+  &.active {
+    visibility: visible;
+    //display: block;
+
+    .model-wrap{
+      //visibility: visible;
+
+      .model-content {
+        .paragraph {
+          opacity: 1;
+          //visibility: visible;
+          transform: translateY(0);
+        }
+
+        .paragraph2 {
+          opacity: 1;
+          //visibility: visible;
+          transform: translateY(0);
+        }
+
+        .close {
+          opacity: 1;
+          //visibility: visible;
+          transform: translateY(0);
+        }
+      }
+    }
+
+  }
+
+
+  .model-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #212121;
+    transition: 0s 2s;
+    color:red;
+    //visibility: hidden;
+
+    .model-content {
+      //color: white;
+      max-width: 500px;
+
+      &::after {
+        content: '';
+        clear: both;
+        display: table;
+      }
+
+
+      .paragraph {
+        text-indent: 32px;
+        //visibility: hidden;
+        //opacity: 0;
+        transform: translateY(-20px);
+        //transition: opacity 0s 2s, transform  0s 2s;
+      }
+
+      .paragraph2 {
+        text-indent: 32px;
+        //visibility: hidden;
+        //opacity: 0;
+        transform: translateY(-20px);
+        transition: color 2s 0s;
+      }
+
+
+      .close {
+        float: right;
+        //visibility: hidden;
+        opacity: 0;
+        transform: translateY(-20px);
+        //transition: opacity 0s 2s, transform  0s 2s, visibility  0s 2s;
+        transition: 0s 2s;
+
+      }
+    }
+  }
+}
+
+.circle {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  margin-left: -250px;
+  margin-top: -250px;
+
+  border-radius: 50%;
+  background: #212121;
+  transform: scale(0);
+  animation: circle-present 1s forwards;
+
+  z-index: -999;
+}
+
+@keyframes circle-present {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.open {
+  background: #69F0AE !important;
+}
+
+.btn {
+  display: inline-block;
+  padding: .75rem 1.5rem;
+  font-weight: bold;
+  user-select: none;
+  color: white;
+  background: #fa5433;
+
+  &:active {
+    background: #fa7453;
+  }
+}

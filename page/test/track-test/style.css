@@ -1,0 +1,49 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.gallery {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  background: rgba(0, 0, 222, 0.1); }
+  .gallery .mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100; }
+  .gallery .item {
+    position: absolute;
+    z-index: -1;
+    width: 30px;
+    height: 20px;
+    border: 1px solid dodgerblue;
+    transform: translate(-50%, -50%);
+    text-align: center; }
+
+.water {
+  position: absolute;
+  z-index: 10;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5); }
+
+.animate {
+  animation: ripple 1s cubic-bezier(0, 0, 0.2, 1); }
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+    visibility: visible; }
+  100% {
+    transform: scale(6);
+    opacity: 0;
+    visibility: hidden; } }
+
+/*# sourceMappingURL=style.css.map */

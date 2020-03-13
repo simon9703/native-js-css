@@ -1,0 +1,41 @@
+@charset "UTF-8";
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+/*
+ * 层级 --> 父背景:0 -->  水波纹:5 --> 文字: 10
+ */
+.ripple-hover {
+  display: inline-block;
+  position: relative;
+  padding: 1.5rem 6rem;
+  color: white;
+  background: #212121;
+  overflow: hidden; }
+  .ripple-hover:hover .ripple-content {
+    color: #212121; }
+  .ripple-hover:hover .ripple-base {
+    width: 250%;
+    padding-top: 250%; }
+  .ripple-hover .ripple-content {
+    position: relative;
+    z-index: 10;
+    user-select: none;
+    transition: color 2s; }
+  .ripple-hover .ripple-base {
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    padding-top: 0;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    background: white;
+    transition: width 2s, padding-top 2s; }
+
+/*# sourceMappingURL=style.css.map */

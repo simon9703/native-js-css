@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/*
+ * 返回随机颜色
+ */
+/*
+ * flex水平 + 垂直居中
+ */
+.container {
+  width: 6rem;
+  height: 24rem;
+  margin: 100px auto;
+  overflow-y: hidden;
+  border: 1px solid red; }
+  .container .list .list-item {
+    width: 100%;
+    line-height: 4rem;
+    text-align: center;
+    user-select: none;
+    font-size: 1rem; }
+    .container .list .list-item:nth-child(1) {
+      background-color: #701ec6; }
+    .container .list .list-item:nth-child(2) {
+      background-color: #a0ef55; }
+    .container .list .list-item:nth-child(3) {
+      background-color: #fa9bb8; }
+    .container .list .list-item:nth-child(4) {
+      background-color: #de3567; }
+    .container .list .list-item:nth-child(5) {
+      background-color: #5cfebb; }
+    .container .list .list-item:nth-child(6) {
+      background-color: #0daf64; }
+    .container .list .list-item:nth-child(7) {
+      background-color: #dede3d; }
+    .container .list .list-item:nth-child(8) {
+      background-color: #e320d1; }
+    .container .list .list-item:nth-child(9) {
+      background-color: #517840; }
+    .container .list .list-item:nth-child(10) {
+      background-color: #06f89c; }
+    .container .list .list-item:nth-child(11) {
+      background-color: #48e2bb; }
+    .container .list .list-item:nth-child(12) {
+      background-color: #71170f; }
+
+/*# sourceMappingURL=rebounce.css.map */

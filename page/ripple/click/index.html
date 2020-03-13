@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+   <!--（按钮）点击出现水波纹-->
+   <div class="ripple-btn">
+       <div class="ripple-content">button</div>
+       <span class="ripple-base"></span>
+   </div>
+</body>
+<script>
+  let rippleNode = document.querySelector('.ripple-btn') // 父节点
+
+  rippleNode.addEventListener('click',  e => {
+    let rippleBase = rippleNode.querySelector('.ripple-base') // 每次获得新创建的水波纹节点
+
+    // 节点的style 中包含translate(-50%.-50%)居中，此处只需计算左上角位置。
+    let x = e.pageX - rippleNode.offsetLeft
+    let y = e.pageY -rippleNode.offsetTop
+
+    let node  = rippleBase.cloneNode(true) // 深克隆
+    if (!node.classList.contains('ripple-animate')) { // 第一次时，需要添加动画类。
+      node.classList.add('ripple-animate')
+    }
+    node.style.left = x + 'px'
+    node.style.top = y + 'px'
+    rippleNode.replaceChild(node, rippleBase) // 替换  ---> 浏览器重新绘制动画。
+  })
+</script>
+
+</html>

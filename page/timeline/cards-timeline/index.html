@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Title</title>
+  <link rel="stylesheet" href="./style.css">
+<!--  https://codepen.io/codyhouse/pen/FdkEf/-->
+</head>·
+<body>
+<header class="title">
+  <h1>花语↓</h1>
+</header>
+
+<section class="timeline">
+  <div class="timeline-item">
+    <div class="timeline-img">
+      <img src="./img/花.png" alt="">
+    </div>
+    <div class="timeline-content">
+      <h5 class="declare">三叶草</h5>
+      <p class="paragraph">三叶草（一叶）：代表祈求。三叶草（二叶）：代表希望。三叶草（三叶）：代表爱情。三叶草（四叶）：代表幸福、真诚的爱</p>
+      <span class="time">十月七日</span>
+      <a href="javascript:void(0)">更多信息</a>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-img">
+      <img src="./img/玫瑰花.png" alt="">
+    </div>
+    <div class="timeline-content">
+      <h5 class="declare">蒲公英</h5>
+      <p class="paragraph">
+        红色蒲公英的花语是天涯海角至死不渝的爱情，一抹淡淡的色彩，遮不住浓浓执着的情怀，缓缓飘飞的羽屑，阻不了切切传达的怜爱。蒲公英的飘洒不是孤独的流浪，而是生命的延续，是糅合自然的本色。朴实的蒲公英寄寓着童年里简单的快乐，无华的它带给人飞向天空的遐思，而红色蒲公英更代表着一种天涯海角至死不渝的爱情。</p>
+      <span class="time">十月九日</span>
+      <a href="javascript:void(0)">更多信息</a>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-img">
+      <img src="./img/雪花.png" alt="">
+    </div>
+    <div class="timeline-content">
+      <h5 class="declare">杜鹃</h5>
+      <p class="paragraph">相传，古有杜鹃鸟，日夜哀鸣而咯血，染红遍山的花朵，因而得名。代表爱的喜悦，据说喜欢此花的人纯真无邪。花语：爱的欣喜，节制</p>
+      <span class="time">十月十二日</span>
+      <a href="javascript:void(0)">更多信息</a>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-img">
+      <img src="./img/花%20(2).png" alt="">
+    </div>
+    <div class="timeline-content">
+      <h5 class="declare">满天星</h5>
+      <p class="paragraph">
+        满天星娇小玲珑，颜色朴素雪白，其独特的质地感，轻盈舒爽又细致，犹如婴儿的呼吸气息，宁静中带着丝丝的喜乐。洁白娇俏的满天星，宛如满天闪烁的星辰，闪烁之间似乎透露着一抹轻轻、诱人的微笑。</p>
+      <span class="time">十月十五日</span>
+      <a href="javascript:void(0)">更多信息</a>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-img">
+      <img src="./img/花%20(1).png" alt="">
+    </div>
+    <div class="timeline-content">
+      <h5 class="declare">含羞草</h5>
+      <p class="paragraph">受到这种花祝福而生的人个性非常害羞胆小，而且很怕生。感受特别的敏锐，自尊心也强。不过如果和了解自己的人在一起，就会轻松自在得多，交朋友重质不重量，喜欢细水长流的感情。</p>
+      <span class="time">十月十八日</span>
+      <a href="javascript:void(0)">更多信息</a>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-img">
+      <img src="./img/花朵.png" alt="">
+    </div>
+    <div class="timeline-content">
+      <h5 class="declare">康乃馨</h5>
+      <p class="paragraph">一提到康乃馨，总会联想到母亲节，据传有位叫安娜的女子为了纪念母亲，总会在母亲忌日的时候赠送别人母亲生前最爱的康乃馨鲜花，后来演变成用康乃馨表达对母亲的爱。
+        红色：母爱；粉色：热爱、高丽；白色：真情、纯洁。</p>
+      <span class="time">十月二十二日</span>
+      <a href="javascript:void(0)">更多信息</a>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-img">
+      <img src="./img/花束.png" alt="">
+    </div>
+    <div class="timeline-content">
+      <h5 class="declare">紫罗兰</h5>
+      <p class="paragraph">相传，一个国家的公主为了和敌国的王子相见，在城楼上坠地而亡，神灵可怜她，把她的灵魂变为紫罗兰。 花语：爱的羁绊，不变的美。</p>
+      <span class="time">十月三十一日</span>
+      <a href="javascript:void(0)">更多信息</a>
+    </div>
+  </div>
+
+</section>
+</body>
+<script>
+  function lazy() {
+    let contents = document.querySelectorAll('.timeline-item:not(.bounce-in)')
+    contents.forEach((element, index) => {
+      let rect = element.getBoundingClientRect()
+      if (rect.top >= 0 && rect.bottom <= document.documentElement.clientHeight) {
+        element.classList.add('bounce-in')
+      }
+    })
+  }
+
+  window.addEventListener('DOMContentLoaded',lazy)
+  window.addEventListener('scroll', lazy)
+  window.addEventListener('resize',lazy)
+
+</script>
+</html>

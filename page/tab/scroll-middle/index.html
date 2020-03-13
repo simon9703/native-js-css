@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Title</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!--https://codepen.io/onlyveen/pen/EXpEqP-->
+    <!--https://codepen.io/Kapilnemo/pen/pbEbQy-->
+    <!--https://codepen.io/bennettfeely/pen/MxOrLO-->
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="tabs">
+        <ul>
+          <li class="tabs-item active"><a href="#111">音乐</a></li>
+          <li class="tabs-item"><a href="#222">电影</a></li>
+          <li class="tabs-item"><a href="#444">动漫</a></li>
+          <li class="tabs-item"><a href="#444">玩游戏</a></li>
+          <li class="tabs-item"><a href="#555">实时新闻</a></li>
+          <li class="tabs-item"><a href="#666">家庭喜剧</a></li>
+          <li class="tabs-item"><a href="#777">个人爱好</a></li>
+          <li class="tabs-item"><a href="#888">跳舞</a></li>
+        </ul>
+      </div>
+
+      <div class="tabs-content">
+        <div class="article active" id="111">1111</div>
+        <div class="article" id="222">222</div>
+        <div class="article" id="333">333</div>
+        <div class="article" id="444">444</div>
+        <div class="article" id="555">555</div>
+        <div class="article" id="666">666</div>
+        <div class="article" id="777">777</div>
+        <div class="article" id="888">888</div>
+        <div class="article" id="999">999</div>
+      </div>
+    </main>
+  </body>
+
+  <script>
+    document.querySelector(".tabs").addEventListener("click", function(e) {
+      let current = e.target;
+      let tabItem = current.parentElement;
+      let tab = tabItem.parentElement
+      document.querySelector('.tabs-item.active').classList.remove('active')
+      tabItem.classList.add('active')
+
+
+      let width = current.offsetWidth
+      let offsetLeft = current.offsetLeft
+      let viewWidth = tab.clientWidth
+      let distance = (viewWidth - width) / 2 - offsetLeft
+      let maxScroll = tab.clientWidth - tab.scrollWidth
+      if (distance > 0 || distance < maxScroll) {
+        distance = distance > 0 ? 0 : maxScroll
+      }
+      console.log(distance)
+      tab.style.transform = `translateX(${distance}px)`
+    });
+  </script>
+</html>

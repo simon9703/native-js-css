@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Title</title>
+  <link rel="stylesheet" href="./style.css">
+<!--  https://codepen.io/tutsplus/pen/QNeJgR/-->
+</head>
+<body>
+<div class="title">
+  <h1>时间线↓</h1>
+</div>
+
+<div class="container">
+  <ul class="timeline">
+    <li class="timeline-item">
+      <div class="timeline-content">
+        <h5 class="time">星期一</h5>
+        <p class="paragraph">于千万人之中遇见你所要遇见的人，于千万年之中，时间的无涯的荒野里，没有早一步，也没有晚一步，刚巧赶上了，那也没有别的话可说，惟有轻轻地问一声：“噢，你也在这里吗？”</p>
+      </div>
+    </li>
+    <li class="timeline-item">
+      <div class="timeline-content">
+        <h5 class="time">星期二</h5>
+        <p class="paragraph">因为爱过，所以慈悲；因为懂得，所以宽容。</p>
+      </div>
+    </li>
+    <li class="timeline-item">
+      <div class="timeline-content">
+        <h5 class="time">星期三</h5>
+        <p class="paragraph">如果你认识从前的我，那么你就会原谅现在的我。</p>
+      </div>
+    </li>
+    <li class="timeline-item">
+      <div class="timeline-content">
+        <h5 class="time">星期四</h5>
+        <p class="paragraph">也许每一个男子全都有过这样的两个女人，至少两个．
+          娶了红玫瑰，久而久之，红的变了墙上的一抹蚊子血，白的还是“床前明月光”；
+          娶了白玫瑰，白的便是衣服上的一粒饭粘子，红的却是心口上的一颗朱砂痣。</p>
+      </div>
+    </li>
+    <li class="timeline-item">
+      <div class="timeline-content">
+        <h5 class="time">星期五</h5>
+        <p class="paragraph">人总是在接近幸福时倍感幸福，在幸福进行时却患得患失。</p>
+      </div>
+    </li>
+    <li class="timeline-item">
+      <div class="timeline-content">
+        <h5 class="time">星期六</h5>
+        <p class="paragraph">说好永远的，不知怎么就散了。最后自己想来想去，竟然也搞不清楚当初是什么原因把彼此分开的。然后，你忽然醒悟，感情原来是这么脆弱的。经得起风雨，却经不起平凡.....</p>
+      </div>
+    </li>
+    <li class="timeline-item">
+      <div class="timeline-content">
+        <h5 class="time">星期日</h5>
+        <p class="paragraph">对于三十岁以后的人来说，十年八年不过是指缝间的事 而对于年轻人而言，三年五年就可以是一生一世..</p>
+      </div>
+    </li>
+  </ul>
+</div>
+</body>
+<script>
+function lazy() {
+  let contents = document.querySelectorAll('li:not(.in-view)')  //每次只选中未显示的
+  contents.forEach((element,index)=> {
+    let rect = element.getBoundingClientRect()
+    // 完全出现在窗口中
+    if(rect.top >= 0 && rect.bottom <= document.documentElement.clientHeight){
+      element.classList.add('in-view')
+    }
+  })
+}
+window.addEventListener('DOMContentLoaded',lazy)
+window.addEventListener('scroll', lazy)
+window.addEventListener('resize',lazy)  //窗口大小改变爷触发。
+
+</script>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+<div class="divider">
+</div>
+<div class="middle-line"></div>
+<div class="gallery">
+    <img src="" data-origin="./meizi/girl1.jpg" alt="">
+    <img src="" data-origin="./meizi/girl2.jpg" alt="">
+    <img src="" data-origin="./meizi/girl3.jpg" alt="">
+    <img src="" data-origin="./meizi/girl4.jpg" alt="">
+    <img src="" data-origin="./meizi/girl1.jpg" alt="">
+    <img src="" data-origin="./meizi/girl2.jpg" alt="">
+    <img src="" data-origin="./meizi/girl3.jpg" alt="">
+    <img src="" data-origin="./meizi/girl4.jpg" alt="">
+</div>
+</body>
+<script>
+    function lazy() {
+        let images = document.querySelectorAll('img[data-origin]')
+        images.forEach(element => {
+            let rect = element.getBoundingClientRect()
+            if (rect.top < document.documentElement.clientHeight * 0.8 && rect.bottom > document.documentElement.clientHeight * 0.2) {
+                    element.src = element.dataset.origin
+                    element.removeAttribute('data-origin')
+
+            }
+        })
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+        console.log('DOMContentLoaded ')
+        lazy()
+    })
+    window.addEventListener('scroll', lazy)
+</script>
+
+<style>
+    .divider {
+        width: 100%;
+        height: 200px;
+        background: deeppink;
+    }
+
+    .middle-line {
+        position: fixed;
+        top: 20vh;
+        left: -10%;
+        width: 120%;
+        height: 60vh;
+        border: 1px solid #212121;
+    }
+
+    .gallery {
+        position: relative;
+        width: 320px;
+        margin: auto;
+        padding-top: 100px;
+    }
+
+    img {
+        display: block;
+        width: 320px;
+        height: 480px;
+        background: #f5f6f7;
+        margin-bottom: 2px;
+    }
+</style>
+
+</html>

@@ -1,0 +1,27 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.water {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5); }
+
+.animate {
+  animation: ripple 1.5s cubic-bezier(0, 0, 0.2, 1); }
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1; }
+  100% {
+    transform: scale(10);
+    opacity: 0; } }
+
+/*# sourceMappingURL=style.css.map */

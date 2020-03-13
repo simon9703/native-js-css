@@ -1,0 +1,77 @@
+body {  // 屏幕居中
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #a1a1a1;
+}
+
+$item-width: 14px; //进度条宽高
+$item-height:5px;
+$item-left: 3px;
+
+.container {  // 使所有div定位在左中，旋转。
+  position: relative;
+  width: 64px;
+  height: 64px;
+
+  div {
+    position: absolute;
+    top: (32px - $item-height/2); //垂直居中
+    left: $item-left;
+    width: $item-width;
+    height: $item-height;
+    border-radius: 2px;
+    background: white;
+    transform-origin: (32px - $item-left) $item-height/2;  // 计算圆心到(32, 32)
+    animation: trans 1.2s cubic-bezier(.5, 0, .5, 1) infinite;
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        transform: rotate($i * 30deg);  // 旋转分布
+        animation-delay: #{ -1.2 + $i * 0.1}s; // 为-1.1 ~ 0 s，第一个最先开始变化。
+      }
+    }
+  }
+}
+
+.container2 {   // 使所有div在左上，高度0。使after元素定位在左中，旋转。
+  width: 64px;
+  height: 64px;
+
+  div {
+    position: relative;
+    transform-origin: 32px 32px;  // 圆心(32, 32)
+    animation: trans 1.2s cubic-bezier(.5, 0, .5, 1) infinite;
+
+    &:after {
+       content: '';
+       position: absolute;
+       top: (32px - $item-height/2); //垂直居中
+       left: $item-left;
+       width: $item-width;
+       height: $item-height;
+       border-radius: 2px;
+       background: white;
+    }
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        //transform: rotate($i * 30deg);  // 旋转分布
+        animation-delay: #{ -1.2 + $i * 0.1}s; // 为-1.1 ~ 0 s，第一个最先开始变化。
+      }
+    }
+  }
+}
+
+
+@keyframes trans {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

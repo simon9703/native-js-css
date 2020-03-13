@@ -1,0 +1,38 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.ripple-btn {
+  position: relative;
+  overflow: hidden; }
+  .ripple-btn .ripple-content {
+    padding: 1.5rem 6rem;
+    color: white;
+    background: #FF5252;
+    user-select: none; }
+  .ripple-btn .ripple-base {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 0; }
+
+.ripple-animate {
+  animation: ripple 1s linear; }
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1; }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0; } }
+
+/*# sourceMappingURL=style.css.map */

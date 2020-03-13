@@ -1,0 +1,89 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white; }
+
+.model {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  visibility: hidden; }
+  .model.active {
+    visibility: visible; }
+    .model.active .model-wrap .model-content .paragraph {
+      opacity: 1;
+      transform: translateY(0); }
+    .model.active .model-wrap .model-content .paragraph2 {
+      opacity: 1;
+      transform: translateY(0); }
+    .model.active .model-wrap .model-content .close {
+      opacity: 1;
+      transform: translateY(0); }
+  .model .model-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #212121;
+    transition: 0s 2s;
+    color: red; }
+    .model .model-wrap .model-content {
+      max-width: 500px; }
+      .model .model-wrap .model-content::after {
+        content: '';
+        clear: both;
+        display: table; }
+      .model .model-wrap .model-content .paragraph {
+        text-indent: 32px;
+        transform: translateY(-20px); }
+      .model .model-wrap .model-content .paragraph2 {
+        text-indent: 32px;
+        transform: translateY(-20px);
+        transition: color 2s 0s; }
+      .model .model-wrap .model-content .close {
+        float: right;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: 0s 2s; }
+
+.circle {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  margin-left: -250px;
+  margin-top: -250px;
+  border-radius: 50%;
+  background: #212121;
+  transform: scale(0);
+  animation: circle-present 1s forwards;
+  z-index: -999; }
+
+@keyframes circle-present {
+  from {
+    transform: scale(0); }
+  to {
+    transform: scale(1); } }
+.open {
+  background: #69F0AE !important; }
+
+.btn {
+  display: inline-block;
+  padding: .75rem 1.5rem;
+  font-weight: bold;
+  user-select: none;
+  color: white;
+  background: #fa5433; }
+  .btn:active {
+    background: #fa7453; }
+
+/*# sourceMappingURL=style.css.map */

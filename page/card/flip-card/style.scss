@@ -1,0 +1,43 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: dodgerblue;
+  perspective: 1000px; // 透视子元素
+}
+
+.card {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(255,255,255,.2);
+  transition: .8s ease-in-out;
+  transform-style: preserve-3d; // 保证背面div（在3d状态下）和前面div在同一层，的不同面-。--> 默认层级高的div前后面都会覆盖在最上面。
+
+  .front, .back {
+    position: absolute; // 卡片显示在同一位置。
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: .5s ease-in-out;
+    backface-visibility: hidden; // 翻转至背面不显示
+  }
+
+  .front {
+    background: lightyellow;
+  }
+
+  .back {
+    background: orangered;
+    transform: rotateY(180deg);  // 父元素旋转 180 + 自生 180 = 360
+  }
+
+  &:hover {
+    transform: rotateY(180deg);
+  }
+}

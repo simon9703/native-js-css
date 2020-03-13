@@ -1,0 +1,30 @@
+$length: 12;
+
+$item-width: 6rem;
+$item-height: 4rem;
+
+@import "../../../styles/mixin";
+
+.container {
+  width: $item-width;
+  height: $length / 2 * $item-height;
+  margin: 100px auto;
+  overflow-y: hidden;
+  border: 1px solid red;
+
+  .list {
+    .list-item {
+      width: 100%;
+      line-height: $item-height;
+      text-align: center;
+      user-select: none;
+      font-size: 1rem;
+      
+      @for $i from 1 through $length {
+        &:nth-child(#{$i}) {
+          background-color: randomColor();
+        }
+      }
+    }
+  }
+}

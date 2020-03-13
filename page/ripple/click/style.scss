@@ -1,0 +1,49 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //background: #E0E0E0;
+}
+
+.ripple-btn {
+  position: relative;
+  overflow: hidden;  // 隐藏超出部分水波纹。
+
+  .ripple-content {
+    padding: 1.5rem 6rem;
+    color: white;
+    background: #FF5252;
+    user-select: none;
+  }
+
+  .ripple-base {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 100%; // 高度与父布局width相同
+    border-radius: 100%; // 和padding-top 设置宽度正方形
+    transform:translate(-50%, -50%); //从左右上角转移到中心位置
+
+    background: rgba(255, 255, 255, .3); //水波纹白色，初始透明
+    opacity: 0;
+  }
+}
+
+.ripple-animate {
+  animation: ripple 1s linear; // 线性变化
+}
+
+@keyframes  ripple{
+  0% {
+    transform:translate(-50%, -50%) scale(0); // transform多个属性防止覆盖
+    opacity: 1;
+  }
+
+  100% {
+    transform:translate(-50%, -50%) scale(2.5); // 2.5倍 > 对角线长度
+    opacity: 0;
+  }
+}

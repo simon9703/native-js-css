@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script> </script>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+      <div class="ripple-hover">
+        <!--让text只占一小部分，鼠标在ripple 和 父节点 来回穿梭时，可触发在mouseover改变位置。-->
+        <text class="ripple-content"> Hover Me!</text>
+        <div class="ripple-base"></div>
+      </div>
+</body>
+<script>
+  let rippleNode = document.querySelector('.ripple-hover') // 父节点
+
+  /*
+    鼠标hover、离开时，css控制样式变化，js调整位置。
+   */
+  rippleNode.addEventListener('mouseover',  e => { // 可以在内部移动触发。
+    console.log('over')
+    updateNodePosition(rippleNode, e)
+  })
+
+  rippleNode.addEventListener('mouseleave',  e => {
+    console.log('out')
+    updateNodePosition(rippleNode, e)
+  })
+
+  function updateNodePosition(rippleNode, e) {
+    let rippleBase = rippleNode.querySelector('.ripple-base') // 移动水波纹节点
+
+    // 节点的style 中包含translate(-50%.-50%)居中，此处只需计算左上角位置。
+    let x = e.pageX - rippleNode.offsetLeft
+    let y = e.pageY -rippleNode.offsetTop
+    rippleBase.style.left = x + 'px'
+    rippleBase.style.top = y + 'px'
+  }
+</script>
+</html>

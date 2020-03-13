@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ripple</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+   <!--（全屏）点击出现水波纹-->
+   <div class="water"></div>
+</body>
+
+<script>
+  window.addEventListener('click', e => {
+    let node = document.querySelector('.water')
+    let water = node.cloneNode(true) // 深复制
+    let x = e.clientX
+    let y = e.clientY
+    water.style.left = `${x -5}px`  // -5居中
+    water.style.top = `${y - 5}px`
+    water.classList.add('animate') // 添加动画类，只会增加一次。
+    node.parentNode.replaceChild(water, node) // 替换
+  })
+
+</script>
+</html>

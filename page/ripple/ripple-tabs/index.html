@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="tabs">
+  <div class="tab-item">HOME</div>
+  <div class="tab-item">ABOUT</div>
+  <div class="tab-item">WEATHER</div>
+  <div class="tab-item">SOCIAL</div>
+  <div class="tab-item">CONTACT</div>
+  <div class="slider"></div>
+</div>
+</body>
+
+<script>
+  let tabs = document.querySelector('.tabs')
+  let tabItems = document.querySelectorAll('.tab-item')
+  let slider = document.querySelector('.slider')
+  for (let i = 0; i < tabItems.length; i++) {
+    tabItems[i].addEventListener('click', e => {
+      slider.style.left = 120 * i + 'px'
+      let ripple = document.createElement('div')
+      ripple.classList.add('ripple-base')
+      tabItems[i].appendChild(ripple)
+      setTimeout(() => {
+        ripple.remove()
+      }, 12000)
+    })
+  }
+</script>
+</html>

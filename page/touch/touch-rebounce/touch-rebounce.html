@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="./rebounce.css">
+  <title>触底反弹</title>
+  <!--https://segmentfault.com/a/1190000017852497-->
+</head>
+<body>
+<div id="container" class="container">
+  <div id="list" class="list">
+    <div class="list-item">列表1</div>
+    <div class="list-item">列表2</div>
+    <div class="list-item">列表3</div>
+    <div class="list-item">列表4</div>
+    <div class="list-item">列表5</div>
+    <div class="list-item">列表6</div>
+    <div class="list-item">列表7</div>
+    <div class="list-item">列表8</div>
+    <div class="list-item">列表9</div>
+    <div class="list-item">列表10</div>
+    <div class="list-item">列表11</div>
+    <div class="list-item">列表12</div>
+  </div>
+</div>
+</body>
+
+<script>
+  let container = document.getElementById('container')
+  let list = document.getElementById('list')
+
+  let current = 0;  // 元素当前位置-->container和list内外上边界差。
+  let start = 0;  // 触摸点当前位置--->计算每次偏移
+  let scrolledDistance = list.offsetHeight - container.offsetHeight //列表总高度（隐藏）-  列表可见高度 = 可滚动距离
+  let maxDown = container.offsetHeight/ 2 //
+  let maxUp =  -(scrolledDistance + maxDown)
+
+  container.addEventListener('touchstart', function (e) {
+    let touch = e.changedTouches[0]
+    start = touch.clientY;  // 本次滑动开始位置
+    console.log('开始', current, start)
+  })
+
+  container.addEventListener('touchmove', function (e) {
+    let touch = e.changedTouches[0]
+    let distance = touch.clientY - start // 滑动距离
+    start = touch.clientY // start --> 每次随列表滑动后，重新计算保存start
+
+    current += distance // current-->列表位置，累加distance
+
+    // 设置上下滑动边界
+    if (current < maxUp) {
+      current =maxUp
+    } else if (current > maxDown) {
+      current =  maxDown
+    }
+
+    list.style.transition = 'none' // 清理end添加的过渡。
+    list.style.transform = `translateY(${current}px)`
+    console.log('移动中', distance, current)
+  })
+
+  container.addEventListener('touchend', function (e) {
+
+    // 结束时若超过边界，滚回来
+      if (current < - scrolledDistance) {
+        current = -scrolledDistance
+      } else if (current > 0) {
+        current = 0
+      }
+      list.style.transition = '.5s'
+      list.style.transform = `translateY(${current}px)`
+
+      console.log('结束', current, e.changedTouches[0].clientY)
+    }
+  )
+
+  /*  记录当前位置（2）：中间使用临时变量，仅仅在结束滑动时保存。
+     move中计算偏移  let tempY = current + distance
+     end中保存  current = current + e.changedTouches[0].clientY - start
+   */
+</script>
+</html>

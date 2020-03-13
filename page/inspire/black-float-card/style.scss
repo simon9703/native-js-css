@@ -1,0 +1,76 @@
+body {  // card居中
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f6f7;
+}
+
+.card {
+  position: relative;
+  width: 240px;
+  height: 180px;
+  border-radius: 16px; // 与角标同
+  background-color: white;
+  box-shadow: 0 6px 20px #ddd;
+
+  .hint {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px; // 在左右扩展后，圆角保持不变。
+    background-color: #212121;
+    cursor: pointer;
+    transition: .3s;
+
+    .hint-info { // 上层罩子，在图标缩放时，文字不因为left/right影响。
+      position: absolute;
+      top: 0;
+      right: 0;
+      height:32px;
+      width: 32px;
+
+      &::before, &::after {
+        position: absolute;
+        content: '';
+        width: 2px;
+        height: 12px;
+        background: white;
+        transition: .3s;
+      }
+
+      &::before {
+        top: 30%;
+        right: 50%;
+        transform: translate(50%, -50%) scaleY(.2);
+      }
+
+      &::after {
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%) scaleY(.6);
+      }
+    }
+
+    &.show {
+      width: 240px + 20px * 2;
+      height: 180px + 20px * 2;
+
+      .hint-info {
+        &::before {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scaleY(1) rotate(-45deg);
+        }
+
+        &::after {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scaleY(1) rotate(45deg);
+        }
+      }
+    }
+  }
+}

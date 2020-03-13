@@ -1,0 +1,49 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.tabs {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); }
+  .tabs .tab-item {
+    position: relative;
+    flex: 1;
+    width: 120px;
+    line-height: 64px;
+    text-align: center;
+    user-select: none;
+    overflow: hidden; }
+  .tabs .slider {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 120px;
+    height: 3px;
+    background: #42A5F5;
+    transition: left .5s ease-in-out; }
+
+.ripple-base {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 100%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: ripple 1s linear; }
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1; }
+  100% {
+    transform: scale(2.5);
+    opacity: 0; } }
+
+/*# sourceMappingURL=style.css.map */

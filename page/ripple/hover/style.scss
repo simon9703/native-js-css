@@ -1,0 +1,49 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //background: #E0E0E0;
+}
+
+/*
+ * 层级 --> 父背景:0 -->  水波纹:5 --> 文字: 10
+ */
+.ripple-hover {
+  display: inline-block;
+  position: relative;
+  padding: 1.5rem 6rem; // 分开text内容节点。
+  color: white;
+  background: #212121;
+  overflow: hidden; // 隐藏超出部分水波纹。
+
+  &:hover .ripple-content {
+    color: #212121;
+  }
+
+  &:hover .ripple-base{
+    width: 250%;
+    padding-top: 250%; // 高度与父布局width相同
+  }
+
+  .ripple-content {
+    position: relative;
+    z-index: 10;
+    user-select: none;
+    transition:color 2s;
+  }
+
+  .ripple-base {
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;  // 设置初始值，用于过渡
+    padding-top: 0;
+    border-radius: 100%; // 和padding-top 设置宽度正方形
+    transform:translate(-50%, -50%); //从左右上角转移到中心位置
+    background: white; //水波纹白色，初始透明
+    transition: width 2s, padding-top 2s;  // 只需要长宽渐变，位置等不管。
+  }
+}

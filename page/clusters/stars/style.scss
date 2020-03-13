@@ -1,0 +1,54 @@
+$galaxy-width: 2000px;
+$galaxy-height: 1200px;
+
+@function stars($n, $color) {
+  $value: '#{random($galaxy-width)}px #{random($galaxy-height)}px #{$color}';
+  @for $i from 1 through $n {
+     $value: '#{$value}, #{random($galaxy-width)}px #{random($galaxy-height)}px #{$color}'
+  }
+  @return unquote($value); // 去除引号
+}
+
+.container {
+  width: 100%;
+  height: $galaxy-height / 2;
+  background: linear-gradient(105deg, #40C4FF, #26A69A, #7E57C2, #FF5252);
+  overflow: hidden;
+}
+.star-small {
+  width: 2px;
+  height: 2px;
+  border-radius: 100%;
+  background-color: #FFEE58;
+  box-shadow: stars(400, #FFEE58);
+  animation: star-fluid 60s infinite;
+}
+
+.star-medium {
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background-color: #ECEFF1;
+  box-shadow: stars(1000, #ECEFF1);
+  animation: star-fluid 80s infinite;
+}
+
+.star-large {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #FFF9C4;
+  box-shadow: stars(600, #FFF9C4);
+  animation: star-fluid 100s infinite;
+}
+
+
+@keyframes star-fluid {
+   from {
+     transform: translateY(-$galaxy-height / 2);
+   }
+
+  to {
+    transform: translateY(0);
+  }
+}
