@@ -4,7 +4,9 @@ Primary style
 
 -------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -14,7 +16,7 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   color: #383838;
   background-color: #f8f8f8;
 }
@@ -62,7 +64,8 @@ Main Components
   margin: 0 40px;
   overflow: hidden;
 }
-.cd-horizontal-timeline .events-wrapper::after, .cd-horizontal-timeline .events-wrapper::before {
+.cd-horizontal-timeline .events-wrapper::after,
+.cd-horizontal-timeline .events-wrapper::before {
   /* these are used to create a shadow effect at the sides of the timeline */
   content: '';
   position: absolute;
@@ -218,7 +221,7 @@ Main Components
   transform: translateX(-100%);
   padding: 0 5%;
   opacity: 0;
-  animation-duration: .4s;
+  animation-duration: 4.4s;
   animation-timing-function: ease-in-out;
 }
 .cd-horizontal-timeline .events-content li.selected {
@@ -228,13 +231,16 @@ Main Components
   opacity: 1;
   transform: translateX(0);
 }
-.cd-horizontal-timeline .events-content li.enter-right, .cd-horizontal-timeline .events-content li.leave-right {
+.cd-horizontal-timeline .events-content li.enter-right,
+.cd-horizontal-timeline .events-content li.leave-right {
   animation-name: cd-enter-right;
 }
-.cd-horizontal-timeline .events-content li.enter-left, .cd-horizontal-timeline .events-content li.leave-left {
+.cd-horizontal-timeline .events-content li.enter-left,
+.cd-horizontal-timeline .events-content li.leave-left {
   animation-name: cd-enter-left;
 }
-.cd-horizontal-timeline .events-content li.leave-right, .cd-horizontal-timeline .events-content li.leave-left {
+.cd-horizontal-timeline .events-content li.leave-right,
+.cd-horizontal-timeline .events-content li.leave-left {
   animation-direction: reverse;
 }
 .cd-horizontal-timeline .events-content li > * {
@@ -244,7 +250,7 @@ Main Components
 .cd-horizontal-timeline .events-content h2 {
   font-weight: bold;
   font-size: 2.6rem;
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -260,7 +266,8 @@ Main Components
   font-size: 1.4rem;
   color: #959595;
 }
-.cd-horizontal-timeline .events-content em, .cd-horizontal-timeline .events-content p {
+.cd-horizontal-timeline .events-content em,
+.cd-horizontal-timeline .events-content p {
   line-height: 1.6;
 }
 @media only screen and (min-width: 768px) {

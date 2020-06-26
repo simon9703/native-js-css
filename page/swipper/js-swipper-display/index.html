@@ -4,6 +4,94 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!-- https://codepen.io/bcarvalho/pen/gWPvJB?editors=0010 -->
   </head>
-  <body></body>
+
+  <body>
+    <div class="container">
+      <div class="slider">
+        <div class="slider-item active">
+          <div class="slider-item-content">1</div>
+        </div>
+        <div class="slider-item">
+          <div class="slider-item-content"><div class="content">2</div></div>
+        </div>
+        <div class="slider-item">
+          <div class="slider-item-content"><div class="content">3</div></div>
+        </div>
+        <div class="slider-item">
+          <div class="slider-item-content"><div class="content">4</div></div>
+        </div>
+      </div>
+      <div class="nav">
+        <div class="nav-container">
+          <span class="back" onclick="back()"><</span>
+          <span class="forward" onclick="forward()">></span>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    let container = document.querySelector('.slider')
+    let items = document.querySelectorAll('.slider-item')
+    let current = 0
+    let max = items.length
+
+    function choose(forward) {
+      let next
+      let before
+      let after
+
+      items.forEach(item => {
+        item.classList.remove('active')
+      })
+
+      if (forward) {
+        next = (current + 1) % 4
+        items[current].classList.add('leave-left')
+        items[next].classList.add('enter-right')
+        items[current].classList.add('active')
+        items[next].classList.add('active')
+
+        before = current
+        after = next
+      } else {
+        next = (current - 1 + 4) % 4
+        items[current].classList.add('leave-right')
+        items[next].classList.add('enter-left')
+        items[current].classList.add('active')
+        items[next].classList.add('active')
+        container.classList.add('reverse')
+        before = current
+        after = next
+      }
+
+      current = next
+    }
+
+    withAnimation(items[current], () => {
+      items[before].classList.remove('leave-right', 'leave-left')
+      items[next].classList.remove('enter-right', 'enter-left')
+    })
+
+    function forward() {
+      choose(true)
+      console.log('forward')
+    }
+
+    function back() {
+      choose(false)
+      console.log('back')
+    }
+
+    function withAnimation(node, fn) {
+      let tmp = () => {
+        fn()
+        node.removeEventListener('animationend', tmp)
+      }
+      node.addEventListener('animationend', tmp)
+    }
+  </script>
 </html>

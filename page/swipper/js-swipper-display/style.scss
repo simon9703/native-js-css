@@ -1,0 +1,138 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  border: 1px solid pink;
+}
+
+.slider {
+  display: flex;
+  flex-wrap: nowrap;
+
+  &.reverse {
+    text-align: right;
+  }
+
+  &-item {
+    flex: none;
+    width: 500px;
+    height: 300px;
+    display: none;
+    transition: 2s all;
+    // opacity: 0;
+
+    &.active {
+      display: block;
+      // opacity: 1;
+      // animation: fade 2s forwards;
+    }
+
+    &.leave-left {
+      animation: leave-left 1s forwards;
+    }
+
+    &.leave-right {
+      animation: leave-right 1s forwards;
+    }
+
+    &.enter-left {
+      animation: enter-left 1s forwards;
+    }
+
+    &.enter-right {
+      animation: enter-right 1s forwards;
+    }
+  }
+}
+
+@keyframes enter-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes enter-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes leave-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes leave-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slider-item-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-item {
+  &:nth-child(1) {
+    background: red;
+  }
+  &:nth-child(2) {
+    background: green;
+  }
+  &:nth-child(3) {
+    background: blue;
+  }
+  &:nth-child(4) {
+    background: purple;
+  }
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 100%;
+
+  &-container {
+    margin: 32px;
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 32px;
+      height: 32px;
+      // text-align: center;
+      border-radius: 50%;
+      font-size: 24px;
+      color: rgba(0, 0, 0, 0.2);
+      user-select: none;
+    }
+  }
+}

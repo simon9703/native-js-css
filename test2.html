@@ -5,38 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <style>
-    .container {
-      padding-top: 200px;
-      height: 4000px;
-      background: linear-gradient(to bottom, red, blue);
+  <body></body>
+  <script>
+    let time = 0
+
+    function addAnimationTask(
+      callback = function (fn) {
+        fn()
+      }
+    ) {
+      let count = 0
+      let startTime = new Date().getTime()
+
+      while (new Date().getTime() - startTime < 1000) {
+        callback(() => {
+          count++
+        })
+      }
+      callback(() => {
+        console.log('task:', count)
+        if (time++ < 3) {
+          addAnimationTask(requestAnimationFrame)
+        }
+      })
     }
 
-    .content {
-      height: 600px;
-      background-color: green;
-    }
-
-    .content2 {
-      height: 400px;
-      background-color: yellow;
-    }
-
-    .sticky {
-      position: sticky;
-      top: 20px;
-
-      height: 40px;
-      background: white;
-    }
-  </style>
-  <body>
-    <div class="container">
-      <div class="content">
-        <div class="content2">
-          <div class="sticky">sticky</div>
-        </div>
-      </div>
-    </div>
-  </body>
+    addAnimationTask(requestAnimationFrame)
+  </script>
 </html>
