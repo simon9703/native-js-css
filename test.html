@@ -4,50 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <style>
+      .count {
+        color: black;
+      }
+    </style>
   </head>
   <body>
     <p class="count">1</p>
     <div>
-      <button class="add">点我</button>
+      <button class="add">点我-macro</button>
+      <button class="add">点我-micro</button>
     </div>
   </body>
+
   <script>
     let $count = document.querySelector('.count')
-    let $btn = document.querySelector('.add')
+    let $btn = document.querySelectorAll('.add')
     let count = 1
+    document.body.style.background = 'white'
 
-    function sleep(times = 0) {
-      let start = new Date()
-      let end = new Date()
-      while (end - start < times) {
-        end = new Date()
+    $btn[0].addEventListener('click', () => {
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          $count.textContent = ++count
+
+          requestAnimationFrame(() => {
+            $count.textContent = ++count
+          })
+        })
       }
-    }
 
-    $btn.addEventListener('click', () => {
-      // alert('task正在执行...')
-      count++
-      $count.textContent = count
-      console.log('before data:', count)
-      console.log('before fef:', $count.textContent)
-      sleep(10000)
+      requestIdleCallback((op) => {
+        console.lo
+        $count.textContent = ++count
+      })
+    })
 
+    $btn[1].addEventListener('click', () => {
       Promise.resolve().then(() => {
-        alert('micro-task正在执行...')
-        count++
-        $count.textContent = count
-        sleep(1000)
-        console.log('after data:', count)
-        console.log('after fef:', $count.textContent)
+        $count.textContent = ++count
       })
 
-      setTimeout(() => {
-        alert('next-task正在执行...')
-        count++
-        $count.textContent = count
-        sleep(1000)
-        console.log('next data:', count)
-        console.log('next fef:', $count.textContent)
+      Promise.resolve().then(() => {
+        $count.textContent = ++count
+      })
+
+      Promise.resolve().then(() => {
+        $count.textContent = ++count
       })
     })
   </script>
