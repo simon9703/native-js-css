@@ -1,42 +1,157 @@
 <!DOCTYPE html>
-<html lang="en" class="aa">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./page/base/common.js"></script>
     <title>Document</title>
-    <style>
-      :root {
-        --primary: #0000ff;
-        --secondary: yellow;
-      }
-
-      .aa {
-        --primary: red;
-        --secondary: yellow;
-      }
-
-      h1 {
-        background-color: var(--primary);
-        --primary: green;
-      }
-
-      h2 {
-        background-color: var(--secondary, red);
-      }
-    </style>
   </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      border: 1px solid pink;
+    }
+  </style>
   <body>
     <div class="container">
-      <h1>今天天气好</h1>
-      <h2>#####</h2>
+      <canvas></canvas>
     </div>
   </body>
 
   <script>
-    let $h1 = document.querySelector('h1')
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    const { width, height } = canvas
 
-    document.body.style.setProperty('--primary', '#e0e0e0')
-    console.log(document.body.style.getPropertyValue('--primary'))
-    // console.log(getComputedStyle($h1))
+    class Particle {
+      constructor(x, y, r = 1, speedx = 0, speedy = 0) {
+        this.x = x
+        this.y = y
+        this.r = r
+        this.speedx = speedx
+        this.speedy = speedy
+        this.neighbors = []
+        this.neighborsThreshold = 100
+      }
+
+      update() {
+        this.x += this.speedx
+        this.y += this.speedy
+
+        if (this.speedx + this.x > width || this.speedx + this.x < 0) {
+          this.speedx = (-this.speedx / Math.abs(this.speedx)) * Math.abs(this.speedx)
+        }
+
+        if (this.speedy + this.y > height || this.speedy + this.y < 0) {
+          this.speedy = (-this.speedy / Math.abs(this.speedy)) * Math.abs(this.speedy)
+        }
+      }
+
+      justifyNeigbor(particles = []) {
+        this.neighbors = []
+        let dis
+        particles.forEach((element) => {
+          dis = Particle.distance(this, element)
+          if (dis < this.neighborsThreshold) {
+            this.neighbors.push(element)
+          }
+        })
+        return this.neighbors
+      }
+
+      render() {
+        ctx.save()
+        ctx.beginPath()
+        ctx.fillStyle = 'red'
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, true)
+        ctx.fill()
+        ctx.closePath()
+        ctx.restore()
+      }
+
+      lineToNeighbors() {
+        this.neighbors.forEach((element) => {
+          ctx.save()
+          ctx.beginPath()
+          ctx.strokeStyle = 'red'
+          ctx.globalAlpha = 1 - Particle.distance(this, element) / this.neighborsThreshold
+          ctx.moveTo(this.x, this.y)
+          ctx.lineTo(element.x, element.y)
+          ctx.stroke()
+          ctx.restore()
+        })
+      }
+
+      positionChange(x, y) {
+        this.x = x
+        this.y = y
+      }
+
+      speedChange(max = 3) {
+        this.speedx = random(1, max) * randomPole()
+        this.speedy = random(1, max) * randomPole()
+        return this
+      }
+
+      static distance(a, b) {
+        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))
+      }
+
+      static randomParticle(speed = null) {
+        let x = random(width)
+        let y = random(height)
+        let p = new Particle(x, y)
+        return p
+      }
+
+      static createMultiple(n = 0) {
+        let arr = []
+        for (let index = 0; index < n; index++) {
+          let p = Particle.randomParticle()
+          p.speedChange()
+          arr.push(p)
+        }
+        return arr
+      }
+    }
+
+    class Animarions {
+      constructor() {
+        this.particles = Particle.createMultiple(100)
+        this.initEvent()
+      }
+
+      initEvent() {
+        window.addEventListener('mousemove', (e) => {
+          this.particles[0].positionChange(e.x, e.y)
+          this.particles[0].speedChange()
+        })
+      }
+
+      start() {
+        let render = () => {
+          ctx.clearRect(0, 0, width, height) -
+            this.particles.forEach((element, index) => {
+              element.update()
+              element.render()
+              element.justifyNeigbor(this.particles.slice(index))
+              element.lineToNeighbors()
+            })
+          requestAnimationFrame(render)
+        }
+
+        requestAnimationFrame(render)
+      }
+    }
+
+    let animations = new Animarions()
+    animations.start()
   </script>
 </html>

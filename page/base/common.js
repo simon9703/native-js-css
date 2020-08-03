@@ -30,6 +30,13 @@ function random(start = 0, end = 0) {
 }
 
 /**
+ * 随机正负
+ */
+function randomPole() {
+  return Math.random() > 0.5 ? -1 : 1
+}
+
+/**
  * 按权重随机
  * @param {权重数组，如[1,2,3]} weight
  * @param {取值数组，如['apple', 'orange', 'banana']} probable
