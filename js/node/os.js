@@ -1,4 +1,5 @@
 const path = require('path')
+const child_process = require('child_process')
 // const os = require('os')
 
 // console.log(os.arch(), os.cpus().length, os.freemem(), os.totalmem())
@@ -16,7 +17,31 @@ const path = require('path')
 // console.log(path.resolve('/a', 'b', '1'))
 
 // process.exit()
-console.log(process.pid)
-process.kill(process.pid)
-console.log(process.argv, process.execArgv, process.execPath)
-console.log(process.cwd())
+// console.log(process.pid)
+// process.kill(process.pid)
+// console.log(process.argv, process.execArgv, process.execPath)
+// console.log(process.cwd())
+
+// child_process.exec('node -v', (err, data, errors) => {
+//   if (err) {
+//     console.log('出错了：', errors)
+//     return
+//   }
+
+//   console.log('执行命令行：', data)
+// })
+
+// const work = child_process.spawn('pwd', [], {
+//   env: __dirname,
+//   shell: true
+// })
+// work.stdout.on('data', (data) => {
+//   console.log('执行命令行：', data.toString())
+// })
+// work.stderr.on('data', (err) => {
+//   console.log('出错了：', err.toString('utf8'))
+// })
+
+child_process.fork('npm -v')
+
+// console.log('执行子进程！')

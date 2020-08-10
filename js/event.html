@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .count {
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="count">1</p>
+    <div>
+      <button class="add">点我-macro</button>
+      <button class="add">点我-micro</button>
+    </div>
+  </body>
+
+  <script>
+    let $count = document.querySelector('.count')
+    let $btn = document.querySelectorAll('.add')
+    let count = 1
+    document.body.style.background = 'white'
+
+    $btn[0].addEventListener('click', () => {
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          $count.textContent = ++count
+
+          requestAnimationFrame(() => {
+            $count.textContent = ++count
+          })
+        })
+      }
+
+      requestIdleCallback((op) => {
+        console.lo
+        $count.textContent = ++count
+      })
+    })
+
+    $btn[1].addEventListener('click', () => {
+      Promise.resolve().then(() => {
+        $count.textContent = ++count
+      })
+
+      Promise.resolve().then(() => {
+        $count.textContent = ++count
+      })
+
+      Promise.resolve().then(() => {
+        $count.textContent = ++count
+      })
+    })
+  </script>
+</html>
