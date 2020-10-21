@@ -1,6 +1,5 @@
 const http = require('http')
 const url = require('url')
-const util = require('util')
 const querystring = require('querystring')
 const formidable = require('formidable')
 
@@ -37,22 +36,22 @@ http
     // })
 
     // - Post + form-data
-    const form = new formidable.IncomingForm()
-    form.uploadDir = 'D://a-html/native/js/node/images'
-    form.keepExtensions = true
-    form.on('field', (field, value) => {
-      console.log('+++', field, value)
-    })
+    // const form = new formidable.IncomingForm()
+    // form.uploadDir = 'D://a-html/native/js/node/images'
+    // form.keepExtensions = true
+    // form.on('field', (field, value) => {
+    //   console.log('+++', field, value)
+    // })
 
-    form.on('file', (name, file) => {
-      console.log('---', name, file.name)
-    })
+    // form.on('file', (name, file) => {
+    //   console.log('---', name, file.name)
+    // })
 
-    form.on('end', () => {
-      console.log('form data 解析完成！')
-    })
+    // form.on('end', () => {
+    //   console.log('form data 解析完成！')
+    // })
 
-    form.parse(req)
+    // form.parse(req)
 
     // setTimeout(() => {
     // console.log('wait 2s。')
