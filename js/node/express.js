@@ -4,11 +4,22 @@ const bodyParser = require('body-parser')
 const app = express()
 const multer = require('multer')
 
+app.set('view engine', 'ejs')
+app.set('views', './dist')
 app.use('/static', express.static(__dirname + '/temp'))
 
 app.all('/*', (req, res, next) => {
   console.log('global middle!')
   next()
+})
+
+app.get('/view/*', (req, res, next) => {
+  res.render('index', {
+    title: '<p style="color:red;">welcome!</p>',
+    message: 'hello!',
+    age: 17,
+    likes: ['swim', 'sing', 'eat']
+  })
 })
 
 app.post(
@@ -77,8 +88,10 @@ app.use(multer({ dest: './images/' }).array('ext'))
 app.post('/tx/*', (req, res, next) => {
   console.log('get request22!')
   res.set('x-name', 'zsm')
-  res.status(201)
-  res.send(req.body)
+  // res.status(201)
+  // res.send(req.body)
+
+  throw new Error('safity!')
   // res.send('hello get22!') // 结束
   // next('123')
 })
@@ -89,7 +102,9 @@ app.use((req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-  console.log('something happened!')
+  console.log('something happened!', err)
+  res.status(500)
+  res.send(err.stack)
 })
 
 app.listen(9001, () => {
